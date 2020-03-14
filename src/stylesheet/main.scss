@@ -1,4 +1,9 @@
+@import '~nes.css/css/nes.css';
+
 @import './utils/mixins';
 @import './utils/variables';
+@import './utils/reset';
 
-@import './components/home';
+@import 'components/app';
+@import 'components/games';
+@import 'components/search';

@@ -1,11 +1,14 @@
 import React from 'react';
+import Games from "./components/Games";
+import Search from "./components/Search";
 
 function App() {
-  return (
-    <div className="App">
-
-    </div>
-  );
+    return (
+        <section className="background">
+            <Search/>
+            <Games/>
+        </section>
+    );
 }
 
 export default App;
