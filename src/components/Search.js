@@ -4,7 +4,7 @@ const Search = ()  => {
 
     return (
         <form className='games'>
-            <label htmlFor='game' className='games__label'>Game:</label>
+            <label htmlFor='game' className='games__label'>Your Games Database</label>
             <div className="nes-field is-inline games__input">
                 <input type="text" id="games" className="nes-input is-dark" placeholder="Search for a game..."/>
             </div>
