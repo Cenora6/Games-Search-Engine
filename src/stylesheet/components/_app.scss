@@ -1,7 +1,7 @@
 .background {
   width: 100vw;
   height: 100vh;
-  background: #000 url("./../../assets/background.png");
+  background: #000 url("./../../assets/background.png") fixed;
   display: flex;
   justify-content: center;
   align-content: center;

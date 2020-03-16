@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Sound from 'react-sound';
 import retroWave from './../assets/music/retrowave.mp3';
 
@@ -9,7 +9,8 @@ const Music = () => {
             <Sound
                 url={retroWave}
                 playStatus={Sound.status.PLAYING}
-                loop = {true}
+                loop={true}
+                volume={50}
             />
         </div>
     )
