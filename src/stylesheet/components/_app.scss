@@ -1,8 +1,13 @@
+body {
+  width: 100%;
+  height: 100%;
+}
+
 .background {
-  width: 100vw;
-  height: 100vh;
+  overflow-x: hidden;
   background: #000 url("./../../assets/background.png") fixed;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
 }
