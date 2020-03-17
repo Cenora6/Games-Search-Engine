@@ -7,36 +7,36 @@ import getGames from "./components/Api";
 function App() {
 
     const [game, setGame] = useState("");
-    const [submit, setSubmit] = useState(false);
+    const [focus, setFocus] = useState(false);
     const [data, setData] = useState([]);
     const [image, setImage] = useState([]);
-    console.log(game, "game")
+    const [loading, setLoading] = useState(0);
 
     const handleInputChange = (e) => {
-        setGame(e.target.value)
-        getGames(game, data, setData, image, setImage);
+        setGame(e.target.value);
     };
 
     const handleSubmit = (e) => {
+        console.log(game);
         e.preventDefault();
-        game.length === 0 && setSubmit(true);
-        console.log(submit); //if submit is clicked
-        console.log(game); //game written in submit
-        getGames(game, data, setData, image, setImage);
-        console.log(data)
+        game.length === 0 ? (setFocus(true) && setLoading(0)) :  setLoading(1);
+        getGames(game, data, setData, image, setImage, setGame, setLoading);
     };
 
-    const handleFocus = (e) => {
-        setSubmit(false);
+    const handleFocus = () => {
+        setFocus(false);
     };
 
     return (
+
         <>
             <section className="background">
+                    <i className={`background__loading nes-icon is-large star ${loading === 1 && 'is-transparent'} ${loading === 2 && 'is-half'}`}
+                       style={{display: `${loading === 0 ? 'none' : "block"}`}}/>
                 <Music/>
-                <Search handleSubmit={handleSubmit} submit={submit} game={game}
+                <Search handleSubmit={handleSubmit} focus={focus} game={game}
                         handleInputChange={handleInputChange} handleFocus={handleFocus}/>
-                <Games data={data} image={image}/>
+                <Games data={data} image={image} loading={loading}/>
             </section>
         </>
 

@@ -1,9 +1,9 @@
 import React from "react";
 import TextTruncate from 'react-text-truncate';
 
-const Games = ({data, image})  => {
+const Games = ({data, image, loading})  => {
     return (
-        <div className='games'>
+        <div className='games' style={{opacity: `${loading === 0 ? '1' : "0"}`}}>
             {data.map( (game, index) => {
                 return (
                     <div className='games__container  nes-container is-rounded is-dark'>
