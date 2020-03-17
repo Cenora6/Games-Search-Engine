@@ -1,7 +1,7 @@
 # Games Search Engine
 
 ### Description
-A website, where you can find games and check the details abotu them.
+A website, where you can find games and check the details aboutthem.
  
 ### Technologies:
 - HTML5
