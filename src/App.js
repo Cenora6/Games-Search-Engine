@@ -10,6 +10,12 @@ function App() {
     const [submit, setSubmit] = useState(false);
     const [data, setData] = useState([]);
     const [image, setImage] = useState([]);
+    console.log(game, "game")
+
+    const handleInputChange = (e) => {
+        setGame(e.target.value)
+        getGames(game, data, setData, image, setImage);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,7 +35,7 @@ function App() {
             <section className="background">
                 <Music/>
                 <Search handleSubmit={handleSubmit} submit={submit} game={game}
-                        handleInputChange={(e) => setGame(e.target.value)} handleFocus={handleFocus}/>
+                        handleInputChange={handleInputChange} handleFocus={handleFocus}/>
                 <Games data={data} image={image}/>
             </section>
         </>

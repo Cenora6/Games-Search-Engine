@@ -1,33 +1,29 @@
 import React from "react";
+import TextTruncate from 'react-text-truncate';
 
 const Games = ({data, image})  => {
-
-    console.log(data)
-
-    console.log(image[0])
-    if(image[0]) {
-        console.log("jest")
-        console.log(image[0].image_id)
-        // const image = `images.igdb.com/igdb/image/upload/t_thumb/${image[0].image_id}.jpg`
-    }
-
     return (
         <div className='games'>
-            {data.map( (game) => {
+            {data.map( (game, index) => {
                 return (
-                    <div key={game.id} className='games__container'>
-                        <div style={{margin: "2rem"}} className={` ${data.length > 0 && "games__container__description nes-container is-rounded is-dark  with-title"}`}>
-                            <h2 className="title" style={{color: "blue"}}>{game.name}</h2>
-                            <p>{game.summary}</p>
+                    <div className='games__container  nes-container is-rounded is-dark'>
+                        <h2>{game.name}</h2>
+                        <div className={` ${data.length > 0 && "games__container__details"}`}>
+                            <div className='games__container__details__description'>
+                                <TextTruncate
+                                    line={10}
+                                    element="p"
+                                    truncateText="…"
+                                    text={game.summary}
+                                    textTruncateChild={<span>Read more...</span>}
+                                />
+                            </div>
+                            {image[index] &&
+                            <div className='games__container__details__photos'>
+                                <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${image[index].image_id}.jpg`} alt={index}/>
+                            </div>
+                            }
                         </div>
-
-                        <div className='games__container__details'>
-                            {/*{console.log(image[0])}*/}
-                            {/*{image[0].image_url.length > 0} && (*/}
-                            {/*<img src={`images.igdb.com/igdb/image/upload/t_thumb/${image[0]}.jpg}`} alt='image'/>*/}
-                            {/*)*/}
-                        </div>
-
                     </div>
                 )
             })}
