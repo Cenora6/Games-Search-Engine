@@ -34,7 +34,7 @@ export default function getGames(game, data, setData, image, setImage, setGame, 
             })
                 .then(res => {
                     setLoading(3);
-                    imageArray = [...imageArray, res.data[0]]
+                    imageArray = [...imageArray, res.data[0]];
                     setImage(imageArray)
                     setTimeout( () => {
                         setLoading(0);
