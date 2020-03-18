@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Games from "./components/Games";
 import Search from "./components/Search";
-import Music from "./components/Music";
 import getGames from "./components/Api";
+import retroWave from "./assets/music/retrowave.mp3";
 
 function App() {
 
@@ -63,7 +63,7 @@ function App() {
                     </div>
                     <i className={`nes-icon is-large star ${loading === 1 && 'is-transparent'} ${loading === 2 && 'is-half'}`}/>
                 </div>
-                <Music/>
+                <audio src={retroWave} autoPlay={true} loop={true}/>
                 <Search handleSubmit={handleSubmit} focus={focus} game={game}
                         handleInputChange={handleInputChange} handleFocus={handleFocus}/>
                 <Games data={data} image={image} loading={loading} activeSite={activeSite} setActiveSite={setActiveSite}
