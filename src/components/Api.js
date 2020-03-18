@@ -17,6 +17,16 @@ export default function getGames(game, data, setData, image, setImage, setGame, 
                where cover != n;`
     })
         .then(response => {
+            if(response.data.length === 0) {
+                setLoading(2);
+                setTimeout( () => {
+                    setLoading(3);
+                }, 1000);
+                setTimeout( () => {
+                    setLoading(0);
+                    setGame("");
+                }, 2000);
+            }
             setLoading(2);
             setData(response.data);
             console.log(response.data)
@@ -35,7 +45,7 @@ export default function getGames(game, data, setData, image, setImage, setGame, 
                 .then(res => {
                     setLoading(3);
                     imageArray = [...imageArray, res.data[0]];
-                    setImage(imageArray)
+                    setImage(imageArray);
                     setTimeout( () => {
                         setLoading(0);
                         setGame("");

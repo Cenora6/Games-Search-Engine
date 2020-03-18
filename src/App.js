@@ -44,11 +44,17 @@ function App() {
     };
 
     return (
-
         <>
-            <section className="background" ref={node}>
-                    <i className={`background__loading nes-icon is-large star ${loading === 1 && 'is-transparent'} ${loading === 2 && 'is-half'}`}
-                       style={{display: `${loading === 0 ? 'none' : "block"}`}}/>
+            <section className={`background ${loading && "blur"}`} ref={node}>
+                <div className={`background__loading`} style={{display: `${loading === 0 ? 'none' : "flex"}`}}>
+                    <div className='background__loading__text'>
+                        <p>Loading</p>
+                        <span>.</span>
+                        <span>.</span>
+                        <span>.</span>
+                    </div>
+                    <i className={`nes-icon is-large star ${loading === 1 && 'is-transparent'} ${loading === 2 && 'is-half'}`}/>
+                </div>
                 <Music/>
                 <Search handleSubmit={handleSubmit} focus={focus} game={game}
                         handleInputChange={handleInputChange} handleFocus={handleFocus}/>
