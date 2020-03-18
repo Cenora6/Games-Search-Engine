@@ -1,9 +1,34 @@
 import React from "react";
 import TextTruncate from 'react-text-truncate';
 
-const Games = ({data, image, loading})  => {
+const Buttons = ({activeSite, data, changeWebsite}) => {
+
+    if(data.length > 0) {
+        if(activeSite === 1) {
+            return (
+                <button type="button" className="nes-btn is-warning right" onClick={changeWebsite}>&gt;</button>
+            )
+        } else if (activeSite === 5) {
+            return (
+                <button type="button" className="nes-btn is-warning left" onClick={changeWebsite}>&lt;</button>
+            )
+        } else {
+            return (
+                <>
+                    <button type="button" className="nes-btn is-warning left" onClick={changeWebsite}>&lt;</button>
+                    <button type="button" className="nes-btn is-warning right" onClick={changeWebsite}>&gt;</button>)
+                </>
+            )
+        }
+    } else {
+        return null;
+    }
+};
+
+const Games = ({data, image, loading, activeSite, changeWebsite})  => {
+
     return (
-        <div className='games' style={{opacity: `${loading === 0 ? '1' : "0"}`}}>
+        <div className='games' style={{opacity: `${loading === null ? '1' : "0"}`}}>
             {data.map( (game, index) => {
                 return (
                     <div className='games__container nes-container is-rounded is-dark nes-pointer'>
@@ -27,6 +52,9 @@ const Games = ({data, image, loading})  => {
                     </div>
                 )
             })}
+            <div className='games__button'>
+                <Buttons activeSite={activeSite} data={data} changeWebsite={changeWebsite}/>
+            </div>
         </div>
     );
 };
