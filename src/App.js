@@ -44,11 +44,9 @@ function App() {
         }
     };
 
+
     const changeWebsite = (e) => {
-        e.target.classList.contains('right') ? setActiveSite(activeSite + 2) : setActiveSite(activeSite - 2);
-        console.log(activeSite);
-        game.length === 0 ? (setFocus(true) && setLoading(0)) :  setLoading(1);
-        getGames(game, data, setData, image, setImage, setGame, setLoading, activeSite);
+        e.target.classList.contains('right') ? setActiveSite(activeSite + 1) : setActiveSite(activeSite - 1);
     };
 
     return (

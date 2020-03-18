@@ -2,13 +2,17 @@ import React from "react";
 import TextTruncate from 'react-text-truncate';
 
 const Buttons = ({activeSite, data, changeWebsite}) => {
+    console.log(activeSite)
+
+    const allPages = Math.ceil(data.length/4);
+    console.log(allPages)
 
     if(data.length > 0) {
         if(activeSite === 1) {
             return (
                 <button type="button" className="nes-btn is-warning right" onClick={changeWebsite}>&gt;</button>
             )
-        } else if (activeSite === 5) {
+        } else if (activeSite === allPages) {
             return (
                 <button type="button" className="nes-btn is-warning left" onClick={changeWebsite}>&lt;</button>
             )
@@ -27,9 +31,13 @@ const Buttons = ({activeSite, data, changeWebsite}) => {
 
 const Games = ({data, image, loading, activeSite, changeWebsite})  => {
 
+    const indexLast = activeSite * 4;
+    const indexFirst = indexLast - 4;
+    const filterGames = data.slice(indexFirst, indexLast);
+
     return (
         <div className='games' style={{opacity: `${loading === null ? '1' : "0"}`}}>
-            {data.map( (game, index) => {
+            {filterGames.map( (game, index) => {
                 return (
                     <div className='games__container nes-container is-rounded is-dark nes-pointer'>
                         <h2>{game.name}</h2>
