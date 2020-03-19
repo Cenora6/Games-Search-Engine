@@ -3,7 +3,6 @@ const API_KEY = "0f6d27ac61f75a0d86a657e5b464f1e0";
 const proxy = 'https://cors-anywhere.herokuapp.com/';
 
 export default function getGames(game, data, setData, image, setImage, setGame, setLoading) {
-    console.log("request")
     axios({
         url: `${proxy}https://api-v3.igdb.com/games`,
         method: 'POST',
@@ -13,7 +12,7 @@ export default function getGames(game, data, setData, image, setImage, setGame, 
         },
         data: `search "${game}";
                fields id,name,cover;
-               limit 50;
+               limit 30;
                where cover != n;`
     })
         .then(response => {
@@ -27,8 +26,8 @@ export default function getGames(game, data, setData, image, setImage, setGame, 
                 }, 2000);
             }
             setLoading(2);
+            setGame("");
             setData(response.data);
-            console.log(response.data)
             let imageArray = [];
             response.data.forEach ( (game) => {
             axios({

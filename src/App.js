@@ -46,7 +46,9 @@ function App() {
 
 
     const changeWebsite = (e) => {
-        e.target.classList.contains('right') ? setActiveSite(activeSite + 1) : setActiveSite(activeSite - 1);
+        // setTimeout( () => {
+            e.target.classList.contains('right') ? setActiveSite(activeSite + 1) : setActiveSite(activeSite - 1);
+        // }, 1000);
     };
 
     return (
