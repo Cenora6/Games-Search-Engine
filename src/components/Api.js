@@ -1,10 +1,10 @@
 import axios from "axios";
 const API_KEY = "0f6d27ac61f75a0d86a657e5b464f1e0";
-const proxy = 'https://cors-anywhere.herokuapp.com/';
+const proxy = 'https://game-searching-engine.herokuapp.com/';
 
 export default function getGames(game, data, setData, image, setImage, setGame, setLoading) {
     axios({
-        url: `${proxy}https://api-v3.igdb.com/games`,
+        url: `${proxy}https://api-v3.igdb.com/games/`,
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -12,7 +12,7 @@ export default function getGames(game, data, setData, image, setImage, setGame, 
         },
         data: `search "${game}";
                fields id,name,cover;
-               limit 30;
+               limit 20;
                where cover != n;`
     })
         .then(response => {
@@ -38,9 +38,10 @@ export default function getGames(game, data, setData, image, setImage, setGame, 
                     'user-key': API_KEY
                 },
                 data: `where id=${game.cover};
-                       fields *;`
+                       fields image_id;`
             })
                 .then(res => {
+                    console.log("RES", res)
                     setLoading(3);
                     imageArray = [...imageArray, res.data[0]];
                     setImage(imageArray);
@@ -54,6 +55,6 @@ export default function getGames(game, data, setData, image, setImage, setGame, 
             });
         })
         .catch(error => {
-            console.log(error.response)
+            console.log(error.response);
         });
 }

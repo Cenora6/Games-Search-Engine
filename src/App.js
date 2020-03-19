@@ -46,14 +46,14 @@ function App() {
 
 
     const changeWebsite = (e) => {
-        // setTimeout( () => {
-            e.target.classList.contains('right') ? setActiveSite(activeSite + 1) : setActiveSite(activeSite - 1);
-        // }, 1000);
+        e.target.classList.contains('right') ? setActiveSite(activeSite + 1) : setActiveSite(activeSite - 1);
     };
+
+    console.log(loading)
 
     return (
         <>
-            <section className={`background ${loading && "blur"}`} ref={node}>
+            <section className={`background ${(loading) && "blur"}`} ref={node}>
                 <div className={`background__loading`} style={{display: `${loading === null ? 'none' : "flex"}`}}>
                     <div className='background__loading__text'>
                         <p>Loading</p>

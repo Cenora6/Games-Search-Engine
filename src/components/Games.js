@@ -1,6 +1,6 @@
 import React from "react";
 import TextTruncate from 'react-text-truncate';
-import { AnimateOnChange } from "@nearform/react-animation"
+import { AnimateOnChange, HideUntilLoaded } from "@nearform/react-animation"
 
 const Buttons = ({activeSite, data, changeWebsite}) => {
 
@@ -36,38 +36,39 @@ const Games = ({data, image, loading, activeSite, changeWebsite})  => {
 
     return (
         <div className='games' style={{opacity: `${loading === null ? '1' : "0"}`}}>
-
-            <AnimateOnChange
-                durationOut="500"
-                animationIn="bounceIn"
-                animationOut="bounceOut"
-            >
             {filterGames.map( (game, index) => {
                 const imageNumber = index + 4 * (activeSite - 1);
                 return (
-                    <div className='games__container nes-container is-rounded is-dark nes-pointer'>
-                        <h2>{game.name}</h2>
-                        <div className={` ${data.length > 0 && "games__container__details"}`}>
-                            {/*<div className='games__container__details__description'>*/}
-                            {/*    <TextTruncate*/}
-                            {/*        line={10}*/}
-                            {/*        element="p"*/}
-                            {/*        truncateText="…"*/}
-                            {/*        text={game.summary}*/}
-                            {/*        textTruncateChild={<span>Read more...</span>}*/}
-                            {/*    />*/}
-                            {/*</div>*/}
-                            {image[index] &&
-                            <div className='games__container__details__photos'>
-                                <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${image[imageNumber].image_id}.jpg`} alt={index}/>
+                    <AnimateOnChange
+                        durationOut="500"
+                        animationIn="fadeIn"
+                        animationOut="fadeOut"
+                        className="games__animation"
+                        key={game.id}
+                    >
+                        <div id={game.id} className='games__container nes-container is-rounded is-dark nes-pointer' onClick={(e) => console.log(e.currentTarget.id)}>
+                            <h2>{game.name}</h2>
+                            <div className={` ${data.length > 0 && "games__container__details"}`}>
+                                {/*<div className='games__container__details__description'>*/}
+                                {/*    <TextTruncate*/}
+                                {/*        line={10}*/}
+                                {/*        element="p"*/}
+                                {/*        truncateText="…"*/}
+                                {/*        text={game.summary}*/}
+                                {/*        textTruncateChild={<span>Read more...</span>}*/}
+                                {/*    />*/}
+                                {/*</div>*/}
+                                {image[index] &&
+                                <div className='games__container__details__photos'>
+                                    <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${image[imageNumber].image_id}.jpg`} alt={index}/>
+                                </div>
+                                }
                             </div>
-                            }
                         </div>
-                    </div>
+                    </AnimateOnChange>
                 )
-            })
-            }
-            </AnimateOnChange>
+            })}
+
             <div className='games__button'>
                 <Buttons activeSite={activeSite} data={data} changeWebsite={changeWebsite}/>
             </div>

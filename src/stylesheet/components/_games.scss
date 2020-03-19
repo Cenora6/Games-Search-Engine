@@ -11,33 +11,33 @@
   position: absolute;
   transition: 2s;
 
+  &__animation:nth-child(1) &__container:hover {
+    background-color: #004060;
+  }
+
+  &__animation:nth-child(2) &__container:hover {
+    background-color: #002040;
+  }
+
+  &__animation:nth-child(3) &__container:hover {
+    background-color: #000040;
+  }
+
+  &__animation:nth-child(4) &__container:hover {
+    background-color: #000020;
+  }
+
   &__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 1rem;
-    transition: 1s;
-    z-index: 10;
-    background-color: #FFFFFF;
-    color: black;
-    width: 35rem;
-
-    &:nth-child(1):hover {
-      background-color: #004060;
-    }
-
-    &:nth-child(2):hover {
-      background-color: #002040;
-    }
-
-    &:nth-child(3):hover {
-      background-color: #000040;
-    }
-
-    &:nth-child(4):hover {
-      background-color: #000020;
-    }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 1rem;
+      transition: 1s;
+      z-index: 10;
+      background-color: #FFFFFF;
+      color: black;
+      width: 35rem;
 
     h2 {
       font-size: 0.7rem;
@@ -80,7 +80,7 @@
 
     .left, .right {
       position: absolute;
-      top: 50%;
+      top: 10rem;
     }
 
     .left {
