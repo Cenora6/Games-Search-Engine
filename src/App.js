@@ -1,8 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Games from "./components/Games";
 import Search from "./components/Search";
-import getGames from "./components/Api";
+import {getDetails, getGames} from "./components/Api";
 import retroWave from "./assets/music/retrowave.mp3";
+import Single from "./components/Single";
 
 function App() {
 
@@ -13,13 +14,29 @@ function App() {
     const [image, setImage] = useState([]);
     const [loading, setLoading] = useState(null);
     const [activeSite, setActiveSite] = useState(1);
+    const [showDetails, setShowDetails] = useState(false);
+    const [details, setDetails] = useState({});
+
+    // ageRating: [],
+    //     alternativeNames: [],
+    //     category: null,
+    //     collection: null,
+    //     cover: null,
+    //     gameModes: [],
+    //     genres: [],
+    //     companies: [],
+    //     name: "",
+    //     platforms: [],
+    //     releaseDates: [],
+    //     summary: "",
+    //     themes: [],
+    //     websites: []
 
     const handleInputChange = (e) => {
         setGame(e.target.value);
     };
 
     const handleSubmit = (e) => {
-        console.log(game);
         e.preventDefault();
         game.length === 0 ? (setFocus(true) && setLoading(0)) :  setLoading(1);
         getGames(game, data, setData, image, setImage, setGame, setLoading, activeSite);
@@ -27,6 +44,9 @@ function App() {
 
     const handleFocus = () => {
         setFocus(false);
+        setLoading(null);
+        setData([]);
+        setActiveSite(1);
     };
 
     useEffect(() => {
@@ -44,17 +64,19 @@ function App() {
         }
     };
 
-
     const changeWebsite = (e) => {
         e.target.classList.contains('right') ? setActiveSite(activeSite + 1) : setActiveSite(activeSite - 1);
     };
 
-    console.log(loading)
+    const handleShowDetails = (e) => {
+        getDetails(e.currentTarget.id, details, setDetails);
+        setShowDetails(true);
+    };
 
     return (
         <>
             <section className={`background ${(loading) && "blur"}`} ref={node}>
-                <div className={`background__loading`} style={{display: `${loading === null ? 'none' : "flex"}`}}>
+                <div className={`background__loading`} style={{display: `${!loading ? 'none' : "flex"}`}}>
                     <div className='background__loading__text'>
                         <p>Loading</p>
                         <span>.</span>
@@ -67,7 +89,8 @@ function App() {
                 <Search handleSubmit={handleSubmit} focus={focus} game={game}
                         handleInputChange={handleInputChange} handleFocus={handleFocus}/>
                 <Games data={data} image={image} loading={loading} activeSite={activeSite} setActiveSite={setActiveSite}
-                       changeWebsite={changeWebsite}/>
+                       changeWebsite={changeWebsite} handleShowDetails={handleShowDetails}/>
+                <Single showDetails={showDetails}/>
             </section>
         </>
 

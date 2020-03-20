@@ -1,6 +1,6 @@
 import React from "react";
 import TextTruncate from 'react-text-truncate';
-import { AnimateOnChange, HideUntilLoaded } from "@nearform/react-animation"
+import {AnimateOnChange} from "@nearform/react-animation"
 
 const Buttons = ({activeSite, data, changeWebsite}) => {
 
@@ -28,14 +28,14 @@ const Buttons = ({activeSite, data, changeWebsite}) => {
     }
 };
 
-const Games = ({data, image, loading, activeSite, changeWebsite})  => {
+const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetails})  => {
 
     const indexLast = activeSite * 4;
     const indexFirst = indexLast - 4;
     const filterGames = data.slice(indexFirst, indexLast);
 
     return (
-        <div className='games' style={{opacity: `${loading === null ? '1' : "0"}`}}>
+        <div className='games' style={{opacity: `${loading === 0 ? '1' : "0"}`}}>
             {filterGames.map( (game, index) => {
                 const imageNumber = index + 4 * (activeSite - 1);
                 return (
@@ -44,9 +44,8 @@ const Games = ({data, image, loading, activeSite, changeWebsite})  => {
                         animationIn="fadeIn"
                         animationOut="fadeOut"
                         className="games__animation"
-                        key={game.id}
                     >
-                        <div id={game.id} className='games__container nes-container is-rounded is-dark nes-pointer' onClick={(e) => console.log(e.currentTarget.id)}>
+                        <div id={game.id} className='games__container nes-container is-rounded is-dark nes-pointer' onClick={handleShowDetails}>
                             <h2>{game.name}</h2>
                             <div className={` ${data.length > 0 && "games__container__details"}`}>
                                 {/*<div className='games__container__details__description'>*/}
@@ -58,7 +57,7 @@ const Games = ({data, image, loading, activeSite, changeWebsite})  => {
                                 {/*        textTruncateChild={<span>Read more...</span>}*/}
                                 {/*    />*/}
                                 {/*</div>*/}
-                                {image[index] &&
+                                {image[index] !== undefined &&
                                 <div className='games__container__details__photos'>
                                     <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${image[imageNumber].image_id}.jpg`} alt={index}/>
                                 </div>
