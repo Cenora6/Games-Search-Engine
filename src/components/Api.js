@@ -80,55 +80,46 @@ function getDetails(game, setDetails, details) {
             console.log(response.data);
             const data = response.data[0];
 
-            data.age_ratings.forEach( (rating) => {
-                getAgeRating(rating, setDetails);
-            });
+            getAgeRating(data.age_ratings, setDetails);
 
-            data.alternative_names.forEach( (name) => {
-                getAlternativeNames(name, setDetails);
-            });
+            getAlternativeNames(data.alternative_names, setDetails);
 
-            data.involved_companies.forEach( (company) => {
-                getCompany(company, setDetails);
-            });
+            getCompany(data.involved_companies, setDetails);
 
             getCover(data.cover, setDetails);
 
-            data.game_modes.forEach( (mode) => {
-                getGameMode(mode, setDetails);
-            })
+            getGameMode(data.game_modes, setDetails);
 
-            data.genres.forEach( (genre) => {
-                getGenres(genre, setDetails);
-            })
+            getGenres(data.genres, setDetails);
 
-            data.release_dates.forEach( (date) => {
-                getReleaseDate(date, setDetails);
-            })
+            getReleaseDate(data.release_dates, setDetails);
 
 
-            setDetails({
-                id: data.id,
-                // ageRating: null,
-                // alternativeNames: null,
-                // category: null,
-                // collection: null,
-                // cover: null,
-                // releaseDate: null,
-                // gameEngine: null,
-                // gameMode: null,
-                // genres: null,
-                // companies: null,
-                name: data.name,
-                // platforms: null,
-                summary: data.summary,
-                // themes: null,
-                // timeToBeat: null,
-                // websites: null,
-            })
+            // setDetails((prevState) => ({
+            //     ...prevState,
+            //     id: data.id,
+            //     name: data.name,
+            //     summary: data.summary,
+            // }));
 
+            // setDetails({
+            //
+            //     // ageRating: null,
+            //     // alternativeNames: null,
+            //     // category: null,
+            //     // collection: null,
+            //     // cover: null,
+            //     // releaseDate: null,
+            //     // gameEngine: null,
+            //     // gameMode: null,
+            //     // genres: null,
+            //     // companies: null,
+            //     // platforms: null,
+            //     // themes: null,
+            //     // timeToBeat: null,
+            //     // websites: null,
+            // })
 
-            console.log(details)
 
             // console.log(response.data[0].age_ratings)
             // getAgeRating(response.data[0].age_ratings, details);
@@ -139,136 +130,146 @@ function getDetails(game, setDetails, details) {
         .catch(error => {
             console.log(error.response);
         });
+
+
 }
 
 
 function getAgeRating(rating, setDetails) {
+
     let ratingData = {
         category: [],
-        ageRating: [],
+        rating: [],
     };
 
-    axios({
-        url: `${proxy}https://api-v3.igdb.com/age_ratings/`,
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'user-key': API_KEY
-        },
-        data: `where id = ${rating};
+    rating.forEach( (rating) => {
+
+        axios({
+            url: `${proxy}https://api-v3.igdb.com/age_ratings/`,
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'user-key': API_KEY
+            },
+            data: `where id = ${rating};
                fields category, rating;`
-    })
-        .then(res => {
-            //AGE RATING
-            // console.log("agerating", res.data)
-
-            if(res.data[0].category === 1) {
-                ratingData.category = [...ratingData.category, "ESRB"];
-            } else {
-                ratingData.category = [...ratingData.category, "PEGI"];
-            }
-
-            if(res.data[0].rating === 1) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating 3"];
-            } else if(res.data[0].rating === 2) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating 7"];
-            } else if(res.data[0].rating === 3) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating 12"];
-            } else if(res.data[0].rating === 4) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating 16"];
-            } else if(res.data[0].rating === 5) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating 18"];
-            } else if(res.data[0].rating === 6) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating RP"];
-            } else if(res.data[0].rating === 7) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating EC"];
-            } else if(res.data[0].rating === 8) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating E"];
-            } else if(res.data[0].rating === 9) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating E10"];
-            } else if(res.data[0].rating === 10) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating T"];
-            } else if(res.data[0].rating === 11) {
-                ratingData.ageRating = [...ratingData.ageRating, "rating M"];
-            } else {
-                ratingData.ageRating = [...ratingData.ageRating, "rating AO"];
-            }
-
-            // let ratingArray = [];
-            // ratingArray = [...ratingArray, res.data[0]];
-            // console.log(ratingArray)
-            //
-            // setDetails((prevState) => ({
-            //     ...prevState,
-            //     ageRating: [ratingArray],
-            // }));
-
         })
-        .catch(error => {
-            console.log(error.response);
-        });
+            .then(res => {
 
-    console.log(ratingData)
+                if(res.data[0].category === 1) {
+                    ratingData.category.push("ESRB");
+                } else {
+                    ratingData.category.push("PEGI");
+                }
+
+                if(res.data[0].rating === 1) {
+                    ratingData.rating = [...ratingData.rating, "rating 3"];
+                } else if(res.data[0].rating === 2) {
+                    ratingData.rating = [...ratingData.rating, "rating 7"];
+                } else if(res.data[0].rating === 3) {
+                    ratingData.rating = [...ratingData.rating, "rating 12"];
+                } else if(res.data[0].rating === 4) {
+                    ratingData.rating = [...ratingData.rating, "rating 16"];
+                } else if(res.data[0].rating === 5) {
+                    ratingData.rating = [...ratingData.rating, "rating 18"];
+                } else if(res.data[0].rating === 6) {
+                    ratingData.rating = [...ratingData.rating, "rating RP"];
+                } else if(res.data[0].rating === 7) {
+                    ratingData.rating = [...ratingData.rating, "rating EC"];
+                } else if(res.data[0].rating === 8) {
+                    ratingData.rating = [...ratingData.rating, "rating E"];
+                } else if(res.data[0].rating === 9) {
+                    ratingData.rating = [...ratingData.rating, "rating E10"];
+                } else if(res.data[0].rating === 10) {
+                    ratingData.rating = [...ratingData.rating, "rating T"];
+                } else if(res.data[0].rating === 11) {
+                    ratingData.rating = [...ratingData.rating, "rating M"];
+                } else {
+                    ratingData.rating = [...ratingData.rating, "rating AO"];
+                }
+
+
+
+            })
+            .catch(error => {
+                console.log(error.response);
+            });
+    });
+
+    // setDetails((prevState) => ({
+    //     ...prevState,
+    //     ageRating: {ratingData},
+    // }));
 }
 
+
 function getAlternativeNames(name, setDetails) {
-    axios({
-        url: `${proxy}https://api-v3.igdb.com/alternative_names/`,
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'user-key': API_KEY
-        },
-        data: `where id = ${name};
+
+    let alternativeNames = [];
+
+    name.forEach( (name) => {
+        axios({
+            url: `${proxy}https://api-v3.igdb.com/alternative_names/`,
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'user-key': API_KEY
+            },
+            data: `where id = ${name};
                        fields name;`
-    })
-        .then(res => {
-            //ALTERNATIVE NAMES
-            // console.log(res.data[0].name);
-            // setDetails({"alternativeName": res.data[0].name})
         })
-        .catch(error => {
-            console.log(error.response);
-        });
+            .then(res => {
+                alternativeNames.push(res.data[0].name)
+            })
+            .catch(error => {
+                console.log(error.response);
+            });
+    });
 }
 
 function getCompany(company) {
-    axios({
-        url: `${proxy}https://api-v3.igdb.com/involved_companies/`,
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'user-key': API_KEY
-        },
-        data: `where id=${company};
+
+    let companyArray = [];
+
+
+    company.forEach( (company) => {
+        axios({
+            url: `${proxy}https://api-v3.igdb.com/involved_companies/`,
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'user-key': API_KEY
+            },
+            data: `where id=${company};
                        fields *;`
-    })
-        .then(res => {
-            console.log(res.data[0].company)
-
-            axios({
-                url: `${proxy}https://api-v3.igdb.com/companies/`,
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'user-key': API_KEY
-                },
-                data: `where id=${res.data[0].company};
-                       fields *;`
-            })
-                .then(res => {
-                    //NAME OF THE COMPANIES
-                    // console.log(res.data[0].name)
-
-                })
-                .catch(error => {
-                    console.log(error.response);
-                });
-
         })
-        .catch(error => {
-            console.log(error.response);
-        });
+            .then(res => {
+                // console.log(res.data[0].company)
+
+                axios({
+                    url: `${proxy}https://api-v3.igdb.com/companies/`,
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'user-key': API_KEY
+                    },
+                    data: `where id=${res.data[0].company};
+                       fields *;`
+                })
+                    .then(res => {
+                        companyArray.push(res.data[0].name)
+
+                    })
+                    .catch(error => {
+                        console.log(error.response);
+                    });
+
+            })
+            .catch(error => {
+                console.log(error.response);
+            });
+    });
+
 }
 
 function getCover(cover) {
@@ -284,7 +285,6 @@ function getCover(cover) {
     })
         .then(res => {
 
-            // GAME'S COVER
             // console.log("cover", res.data[0].image_id)
 
         })
@@ -295,66 +295,81 @@ function getCover(cover) {
 
 
 function getGameMode(mode) {
-    axios({
-        url: `${proxy}https://api-v3.igdb.com/game_modes/`,
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'user-key': API_KEY
-        },
-        data: `where id=${mode};
-                       fields *;`
-    })
-        .then(res => {
-            // GAME MODE NAME
-            // console.log(res.data[0].name)
 
+    let modeArray = [];
+
+
+    mode.forEach( (mode) => {
+        axios({
+            url: `${proxy}https://api-v3.igdb.com/game_modes/`,
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'user-key': API_KEY
+            },
+            data: `where id=${mode};
+                       fields *;`
         })
-        .catch(error => {
-            console.log(error.response);
-        });
+            .then(res => {
+                modeArray.push(res.data[0].name)
+
+            })
+            .catch(error => {
+                console.log(error.response);
+            });
+    });
+
+
 }
 
 function getGenres(genre) {
-    axios({
-        url: `${proxy}https://api-v3.igdb.com/genres/`,
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'user-key': API_KEY
-        },
-        data: `where id=${genre};
-                       fields *;`
-    })
-        .then(res => {
-            // GAME'S GENRES
-            // console.log(res.data[0].name)
+    let genreArray = [];
 
+    genre.forEach( (genre) => {
+        axios({
+            url: `${proxy}https://api-v3.igdb.com/genres/`,
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'user-key': API_KEY
+            },
+            data: `where id=${genre};
+                       fields *;`
         })
-        .catch(error => {
-            console.log(error.response);
-        });
+            .then(res => {
+                genreArray.push(res.data[0].name)
+
+            })
+            .catch(error => {
+                console.log(error.response);
+            });
+    });
+
 }
 
 function getReleaseDate(date) {
-    axios({
-        url: `${proxy}https://api-v3.igdb.com/release_dates/`,
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'user-key': API_KEY
-        },
-        data: `where id=${date};
-                       fields *;`
-    })
-        .then(res => {
-            // GAME'S RELEASE YEAR
-            // console.log(res.data[0].y);
+    const releaseDateArray = [];
 
+    date.forEach( (date) => {
+        axios({
+            url: `${proxy}https://api-v3.igdb.com/release_dates/`,
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'user-key': API_KEY
+            },
+            data: `where id=${date};
+                       fields *;`
         })
-        .catch(error => {
-            console.log(error.response);
-        });
+            .then(res => {
+                releaseDateArray.push(res.data[0].y);
+
+            })
+            .catch(error => {
+                console.log(error.response);
+            });
+    });
+    console.log(releaseDateArray[0])
 }
 
 export {getGames, getDetails};
