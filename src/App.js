@@ -17,21 +17,6 @@ function App() {
     const [showDetails, setShowDetails] = useState(false);
     const [details, setDetails] = useState({});
 
-    // ageRating: [],
-    //     alternativeNames: [],
-    //     category: null,
-    //     collection: null,
-    //     cover: null,
-    //     gameModes: [],
-    //     genres: [],
-    //     companies: [],
-    //     name: "",
-    //     platforms: [],
-    //     releaseDates: [],
-    //     summary: "",
-    //     themes: [],
-    //     websites: []
-
     const handleInputChange = (e) => {
         setGame(e.target.value);
     };
@@ -47,6 +32,7 @@ function App() {
         setLoading(null);
         setData([]);
         setActiveSite(1);
+        setShowDetails(false);
     };
 
     useEffect(() => {
@@ -69,10 +55,12 @@ function App() {
     };
 
     const handleShowDetails = (e) => {
-        getDetails(e.currentTarget.id, details, setDetails);
+        getDetails(e.currentTarget.id, setDetails);
         setShowDetails(true);
     };
+    // console.log(showDetails)
 
+    console.log(loading)
     return (
         <>
             <section className={`background ${(loading) && "blur"}`} ref={node}>
@@ -90,7 +78,7 @@ function App() {
                         handleInputChange={handleInputChange} handleFocus={handleFocus}/>
                 <Games data={data} image={image} loading={loading} activeSite={activeSite} setActiveSite={setActiveSite}
                        changeWebsite={changeWebsite} handleShowDetails={handleShowDetails}/>
-                <Single showDetails={showDetails}/>
+                <Single showDetails={showDetails} details={details}/>
             </section>
         </>
 

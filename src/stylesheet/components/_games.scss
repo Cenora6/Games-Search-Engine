@@ -27,7 +27,14 @@
     background-color: #000020;
   }
 
-  &__container {
+  &__error {
+    h2 {
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  &__error, &__container {
       display: flex;
       justify-content: center;
       align-items: center;

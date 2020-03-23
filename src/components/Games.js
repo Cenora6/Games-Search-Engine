@@ -1,5 +1,4 @@
 import React from "react";
-import TextTruncate from 'react-text-truncate';
 import {AnimateOnChange} from "@nearform/react-animation"
 
 const Buttons = ({activeSite, data, changeWebsite}) => {
@@ -29,6 +28,7 @@ const Buttons = ({activeSite, data, changeWebsite}) => {
 };
 
 const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetails})  => {
+    console.log(data)
 
     const indexLast = activeSite * 4;
     const indexFirst = indexLast - 4;
@@ -36,6 +36,18 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
 
     return (
         <div className='games' style={{opacity: `${loading === 0 ? '1' : "0"}`}}>
+            {data.length === 0 &&
+            <AnimateOnChange
+                durationOut="500"
+                animationIn="fadeIn"
+                animationOut="fadeOut"
+                className="games__animation"
+            >
+                <div className='games__error nes-container is-rounded is-dark nes-pointer' style={{marginTop: "3.5rem"}}>
+                    <h2>No results.</h2>
+                </div>
+            </AnimateOnChange>
+            }
             {filterGames.map( (game, index) => {
                 const imageNumber = index + 4 * (activeSite - 1);
                 return (
@@ -48,15 +60,6 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
                         <div id={game.id} className='games__container nes-container is-rounded is-dark nes-pointer' onClick={handleShowDetails}>
                             <h2>{game.name}</h2>
                             <div className={` ${data.length > 0 && "games__container__details"}`}>
-                                {/*<div className='games__container__details__description'>*/}
-                                {/*    <TextTruncate*/}
-                                {/*        line={10}*/}
-                                {/*        element="p"*/}
-                                {/*        truncateText="…"*/}
-                                {/*        text={game.summary}*/}
-                                {/*        textTruncateChild={<span>Read more...</span>}*/}
-                                {/*    />*/}
-                                {/*</div>*/}
                                 {image[index] !== undefined &&
                                 <div className='games__container__details__photos'>
                                     <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${image[imageNumber].image_id}.jpg`} alt={index}/>
