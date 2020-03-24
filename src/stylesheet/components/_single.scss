@@ -1,4 +1,4 @@
-.single.is-dark {
+.single {
   display: flex;
   flex-direction: column;
   z-index: 20;
@@ -6,10 +6,25 @@
   height: 85vh;
   left: 10%;
   top: 10%;
-  position: absolute;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 2rem;
+
+    h2 {
+      color: #004f9c;
+      font-size: 2rem;
+    }
+  }
+
+  &.is-dark {
+    position: absolute;
+  }
 
   &__details {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -17,10 +32,60 @@
       display: flex;
       justify-content: center;
       align-content: center;
+      margin: 1rem;
+      width: 100%;
+
+      img {
+        border: 0.5rem double white;
+      }
+
+      &__age {
+        text-align: right;
+        width: 70%;
+        margin: 1rem;
+      }
+    }
+
+
+    &__text, .text {
+      text-align: left;
+      margin: 1rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom: 0.2rem solid #006fa7;
+    }
+
+    &__text {
+      border: none;
+    }
+
+  }
+
+  .title {
+    font-size: 1.5rem;
+    color: #006fa7;
+    margin: 0 1rem;
+  }
+
+  p {
+    line-height: 1.5rem;
+    font-size: 0.7rem;
+    margin-left: 1rem;
+  }
+
+  .age_rating {
+    justify-content: end;
+
+    p {
+      display: flex;
+      flex-direction: column;
     }
 
     &__text {
       display: flex;
+      width: 100%;
+      justify-content: flex-end;
     }
   }
 }

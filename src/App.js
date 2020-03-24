@@ -56,11 +56,18 @@ function App() {
 
     const handleShowDetails = (e) => {
         getDetails(e.currentTarget.id, setDetails);
-        setShowDetails(true);
+        setTimeout( () => {
+            setShowDetails(true);
+        }, 3000)
     };
     // console.log(showDetails)
 
-    console.log(loading)
+    const handleCloseDetails = () => {
+      setDetails({});
+      setShowDetails(false);
+    };
+
+    console.log(loading);
     return (
         <>
             <section className={`background ${(loading) && "blur"}`} ref={node}>
@@ -78,7 +85,7 @@ function App() {
                         handleInputChange={handleInputChange} handleFocus={handleFocus}/>
                 <Games data={data} image={image} loading={loading} activeSite={activeSite} setActiveSite={setActiveSite}
                        changeWebsite={changeWebsite} handleShowDetails={handleShowDetails}/>
-                <Single showDetails={showDetails} details={details}/>
+                <Single showDetails={showDetails} details={details} handleCloseDetails={handleCloseDetails}/>
             </section>
         </>
 

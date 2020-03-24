@@ -58,7 +58,7 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
         });
 }
 
-function getDetails(game, setDetails, details) {
+function getDetails(game, setDetails) {
     console.log(game)
     axios({
         url: `${proxy}https://api-v3.igdb.com/games/`,
@@ -137,12 +137,6 @@ function getDetails(game, setDetails, details) {
             //     // timeToBeat: null,
             //     // websites: null,
             // })
-
-
-            // console.log(response.data[0].age_ratings)
-            // getAgeRating(response.data[0].age_ratings, details);
-            // setDetails()
-            // console.log(details)
 
         })
         .catch(error => {
