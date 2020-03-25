@@ -3,29 +3,22 @@ import {AnimateOnChange} from "@nearform/react-animation";
 import exit from "./../assets/xmark.svg";
 
 function Single({showDetails, details, handleCloseDetails}) {
-    const objectLength = Object.keys(details).length;
     console.log(details)
+    console.log(details.websitesUrl)
+    console.log(details.websitesCategory)
 
-
-    // if(details.ageRating.category !== undefined) {
-    //     console.log(details.ageRating.category)
-    // }
-
-    // if(details.ageRating !== undefined) {
-    //     console.log(details.ageRating)
-    //     console.log(details.ageCategory)
-    // }
-
-
-    if(details.company) {
-        console.log(details.company)
+    if(details.websitesUrl) {
+        console.log(details.websitesUrl)
+        console.log(details.websitesCategory)
+        console.log(details.websitesCategory.indexOf('wikia'))
+        // console.log(details.websitesCategory.findIndex('wikia'))
     }
+
     return (
         <AnimateOnChange
             durationOut="500"
             animationIn="fadeIn"
             animationOut="fadeOut"
-            className="games__animation"
         >
 
             <section className='single nes-container is-rounded is-dark' style={{display: `${showDetails ? 'flex' : 'none'}`}}>
@@ -36,7 +29,9 @@ function Single({showDetails, details, handleCloseDetails}) {
                 </div>
                 <div className='single__details'>
                     <div className='single__details__image'>
-                        <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${details.cover}.jpg`} alt='game_cover'/>
+                        <div className='single__details__image__single'>
+                            <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${details.cover}.jpg`} alt='game_cover'/>
+                        </div>
                         <div className='single__details__image__age'>
 
                             {details.alternativeNames &&
@@ -80,7 +75,7 @@ function Single({showDetails, details, handleCloseDetails}) {
                             </div>
                             }
 
-                            {details.mode &&
+                            {details.genre &&
                             <div className='text'>
                                 <span className='title'>Genre:</span>
                                 <p>
@@ -93,7 +88,7 @@ function Single({showDetails, details, handleCloseDetails}) {
                             <div className='text'>
                                 <span className='title'>Release year:</span>
                                 <p>
-                                    <span>{details.releaseDate[0]}</span>
+                                    <span>{ details.releaseDate[0] !== undefined ? details.releaseDate[0] : '-'}</span>
                                 </p>
                             </div>
                             }
@@ -110,18 +105,17 @@ function Single({showDetails, details, handleCloseDetails}) {
                     </div>
                     <div className='single__details__text'>
                         <span className='title'>Summary:</span>
-                        <p> {details.summary}</p>
+                        <p> {details.summary !== undefined ? details.summary : '-'}</p>
                     </div>
-                    {/*{details.themes.length > 0 &&*/}
-                    {/*<div className='single__details__themes'>*/}
-                    {/*    <span className='title'>Themes:</span>*/}
-                    {/*    <p>{details.themes.map( (theme) => {*/}
-                    {/*        return (*/}
-                    {/*            theme*/}
-                    {/*        )*/}
-                    {/*    })}</p>*/}
-                    {/*</div>*/}
-                    {/*}*/}
+
+                    {details.websites &&
+                    <div className='single__details__websites text'>
+                        <p>
+                            {/*{details.websites.map((theme) => <span>{theme} | </span>)}*/}
+                        </p>
+                    </div>
+                    }
+
                 </div>
 
             </section>

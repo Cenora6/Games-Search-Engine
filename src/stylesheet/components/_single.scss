@@ -35,35 +35,40 @@
       margin: 1rem;
       width: 100%;
 
-      img {
-        border: 0.5rem double white;
+      &__single {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          border: 0.5rem double white;
+        }
       }
 
       &__age {
         text-align: right;
         width: 70%;
-        margin: 1rem;
+        margin: 1rem 2rem;
       }
     }
 
-
     &__text, .text {
       text-align: left;
-      margin: 1rem;
       display: flex;
       justify-content: space-between;
-      padding: 1rem;
+      padding: 0.5rem;
       border-bottom: 0.2rem solid #006fa7;
+      line-height: 2rem;
     }
 
     &__text {
       border: none;
+      width: 100%;
     }
-
   }
 
   .title {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #006fa7;
     margin: 0 1rem;
   }
@@ -72,6 +77,7 @@
     line-height: 1.5rem;
     font-size: 0.7rem;
     margin-left: 1rem;
+    padding: 0.3rem 0;
   }
 
   .age_rating {

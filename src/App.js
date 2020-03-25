@@ -30,9 +30,10 @@ function App() {
     const handleFocus = () => {
         setFocus(false);
         setLoading(null);
-        setData([]);
         setActiveSite(1);
         setShowDetails(false);
+        setData([]);
+        setDetails({});
     };
 
     useEffect(() => {
@@ -60,14 +61,13 @@ function App() {
             setShowDetails(true);
         }, 3000)
     };
-    // console.log(showDetails)
 
     const handleCloseDetails = () => {
       setDetails({});
       setShowDetails(false);
     };
 
-    console.log(loading);
+    console.log("loading", loading);
     return (
         <>
             <section className={`background ${(loading) && "blur"}`} ref={node}>

@@ -28,7 +28,6 @@ const Buttons = ({activeSite, data, changeWebsite}) => {
 };
 
 const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetails})  => {
-    console.log(data)
 
     const indexLast = activeSite * 4;
     const indexFirst = indexLast - 4;
@@ -36,7 +35,7 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
 
     return (
         <div className='games' style={{opacity: `${loading === 0 ? '1' : "0"}`}}>
-            {data.length === 0 &&
+            {(data.length === 0 && loading === 0) &&
             <AnimateOnChange
                 durationOut="500"
                 animationIn="fadeIn"

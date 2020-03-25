@@ -41,6 +41,7 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
                        fields image_id;`
                 })
                     .then(res => {
+                        console.log(res.data)
                         setLoading(3);
                         imageArray = [...imageArray, res.data[0]];
                         setImage(imageArray);
@@ -59,7 +60,6 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
 }
 
 function getDetails(game, setDetails) {
-    console.log(game)
     axios({
         url: `${proxy}https://api-v3.igdb.com/games/`,
         method: 'POST',
@@ -142,8 +142,6 @@ function getDetails(game, setDetails) {
         .catch(error => {
             console.log(error.response);
         });
-
-
 }
 
 
@@ -257,8 +255,6 @@ function getCompany(company, setDetails) {
                        fields *;`
         })
             .then(res => {
-                // console.log(res.data[0].company)
-
                 axios({
                     url: `${proxy}https://api-v3.igdb.com/companies/`,
                     method: 'POST',
@@ -398,7 +394,6 @@ function getReleaseDate(date, setDetails) {
                 console.log(error.response);
             });
     });
-    console.log(releaseDateArray[0])
 
     setDetails((prevState) => ({
         ...prevState,
@@ -421,18 +416,12 @@ function getTheme(themes, setDetails) {
                        fields name;`
         })
             .then(res => {
-                // console.log(res.data)
                 themesArray.push(res.data[0].name);
 
             })
             .catch(error => {
                 console.log(error.response);
             });
-        // console.log(releaseDateArray[0])
-
-        // setDetails((prevState) => ({
-        //     ...prevState,
-        //     releaseDate: releaseDateArray,
     });
 
     setDetails((prevState) => ({
@@ -443,10 +432,8 @@ function getTheme(themes, setDetails) {
 }
 
 function getWebsite(website, setDetails) {
-    const websitesArray = {
-        category: [],
-        url: [],
-    };
+    const websiteCategory = [];
+    const websiteUrl = [];
 
     website.forEach( (website) => {
         axios({
@@ -461,40 +448,40 @@ function getWebsite(website, setDetails) {
         })
             .then(res => {
 
-                websitesArray.url.push(res.data[0].url);
+                websiteUrl.push(res.data[0].url);
 
                 if(res.data[0].category === 1) {
-                    websitesArray.category.push("official")
+                    websiteCategory.push("official")
                 } else if (res.data[0].category === 2) {
-                    websitesArray.category.push("wikia")
+                    websiteCategory.push("wikia")
                 } else if (res.data[0].category === 3) {
-                    websitesArray.category.push("wikipedia")
+                    websiteCategory.push("wikipedia")
                 } else if (res.data[0].category === 4) {
-                    websitesArray.category.push("facebook")
+                    websiteCategory.push("facebook")
                 } else if (res.data[0].category === 5) {
-                    websitesArray.category.push("twitter")
+                    websiteCategory.push("twitter")
                 } else if (res.data[0].category === 6) {
-                    websitesArray.category.push("twitch")
+                    websiteCategory.push("twitch")
                 } else if (res.data[0].category === 8) {
-                    websitesArray.category.push("instagram")
+                    websiteCategory.push("instagram")
                 } else if (res.data[0].category === 9) {
-                    websitesArray.category.push("youtube")
+                    websiteCategory.push("youtube")
                 } else if (res.data[0].category === 10) {
-                    websitesArray.category.push("iphone")
+                    websiteCategory.push("iphone")
                 } else if (res.data[0].category === 11) {
-                    websitesArray.category.push("ipad")
+                    websiteCategory.push("ipad")
                 } else if (res.data[0].category === 12) {
-                    websitesArray.category.push("android")
+                    websiteCategory.push("android")
                 } else if (res.data[0].category === 13) {
-                    websitesArray.category.push("steam")
+                    websiteCategory.push("steam")
                 } else if (res.data[0].category === 14) {
-                    websitesArray.category.push("reddit")
+                    websiteCategory.push("reddit")
                 } else if (res.data[0].category === 15) {
-                    websitesArray.category.push("itch")
+                    websiteCategory.push("itch")
                 } else if (res.data[0].category === 16) {
-                    websitesArray.category.push("epicgames")
+                    websiteCategory.push("epicgames")
                 } else if (res.data[0].category === 17) {
-                    websitesArray.category.push("gog")
+                    websiteCategory.push("gog")
                 }
 
             })
@@ -505,7 +492,8 @@ function getWebsite(website, setDetails) {
 
     setDetails((prevState) => ({
         ...prevState,
-        websites: websitesArray,
+        websitesCategory: websiteCategory,
+        websitesUrl: websiteUrl,
     }));
 
 }
