@@ -10,7 +10,8 @@ body {
 
 .background {
   overflow-x: hidden;
-  background: #000 url("./../../assets/background.png") fixed;
+  background: #000 url("./../../assets/background.png") fixed no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,6 +28,11 @@ body {
     font-size: 4rem;
     z-index: 10;
     top: 50%;
+
+    @include tablet {
+      left: 55%;
+      transform: translate(-50%, 0%);
+    }
 
     @include phone {
       top: auto;

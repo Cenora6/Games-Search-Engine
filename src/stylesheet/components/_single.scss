@@ -47,11 +47,6 @@
       overflow: auto;
     }
 
-    @include tablet {
-      display: block;
-      overflow: visible;
-    }
-
     &__image {
       display: flex;
       justify-content: center;
@@ -59,7 +54,7 @@
       margin: 1rem;
       width: 100%;
 
-      @include phone {
+      @include tablet-and-phone {
         flex-direction: column;
         margin: 0 auto;
       }
@@ -72,7 +67,7 @@
         img {
           border: 0.5rem double white;
 
-          @include phone {
+          @include tablet-and-phone {
             width: 50%;
             margin: 1rem;
           }
@@ -84,10 +79,17 @@
         width: 70%;
         margin: 1rem 2rem;
 
-        @include phone {
+        @include tablet-and-phone {
           margin: 0 auto;
           width: 100%;
+        }
+
+        @include phone {
           padding: 1rem;
+        }
+
+        @include tablet {
+          padding: 2rem;
         }
       }
     }
@@ -100,7 +102,7 @@
       border-bottom: 0.2rem solid #006fa7;
       line-height: 2rem;
 
-      @include phone {
+      @include tablet-and-phone {
         flex-direction: column;
       }
     }
