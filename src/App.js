@@ -16,6 +16,8 @@ function App() {
     const [activeSite, setActiveSite] = useState(1);
     const [showDetails, setShowDetails] = useState(false);
     const [details, setDetails] = useState({});
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
 
     const handleInputChange = (e) => {
         setGame(e.target.value);
@@ -23,8 +25,8 @@ function App() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        game.length === 0 ? (setFocus(true) && setLoading(0)) :  setLoading(1);
-        getGames(game, data, setData, image, setImage, setGame, setLoading, activeSite);
+        game.length === 0 ? (setFocus(true) && setLoading(0)) : setLoading(1);
+        game.length !== 0 && getGames(game, data, setData, image, setImage, setGame, setLoading, activeSite);
     };
 
     const handleFocus = () => {
@@ -67,6 +69,15 @@ function App() {
       setShowDetails(false);
     };
 
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWidth(window.innerWidth);
+            setHeight(window.innerHeight)};
+
+        window.addEventListener("resize", handleWindowResize);
+        return () => window.removeEventListener("resize", handleWindowResize);
+    }, []);
+
     console.log("loading", loading);
     return (
         <>
@@ -84,7 +95,7 @@ function App() {
                 <Search handleSubmit={handleSubmit} focus={focus} game={game}
                         handleInputChange={handleInputChange} handleFocus={handleFocus}/>
                 <Games data={data} image={image} loading={loading} activeSite={activeSite} setActiveSite={setActiveSite}
-                       changeWebsite={changeWebsite} handleShowDetails={handleShowDetails}/>
+                       changeWebsite={changeWebsite} handleShowDetails={handleShowDetails} width={width} height={height}/>
                 <Single showDetails={showDetails} details={details} handleCloseDetails={handleCloseDetails}/>
             </section>
         </>

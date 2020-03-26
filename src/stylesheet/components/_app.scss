@@ -2,6 +2,10 @@ body {
   width: 100%;
   height: 100%;
   font-family: $font-title;
+
+  @include phone {
+    font-size: 70%;
+  }
 }
 
 .background {
@@ -23,6 +27,18 @@ body {
     font-size: 4rem;
     z-index: 10;
     top: 50%;
+
+    @include phone {
+      top: auto;
+      font-size: 2rem;
+      left: 25%;
+    }
+
+    .nes-icon.is-large {
+      @include phone {
+        margin: 1rem 25%;
+      }
+    }
 
     &__text {
       display: flex;
@@ -52,13 +68,15 @@ body {
       p, span {
         font-size: 2rem;
         color: #FFF;
+
+        @include phone {
+          font-size: 1.5rem;
+          margin: 0 auto;
+        }
       }
 
       span {
-        animation-name: blink;
-        animation-duration: 2s;
-        animation-iteration-count: infinite;
-        animation-fill-mode: both;
+        @include animation('blink 2s infinite both');
 
         &:nth-child(3) {
           animation-delay: .2s;
@@ -77,10 +95,9 @@ body {
 
   &.blur {
     &:after {
-      content: "";
+      @include pseudo;
       width: 100%;
       height: 100%;
-      position: absolute;
       transition: 2s;
       background-color: #000;
       opacity: 0.8;
@@ -88,7 +105,7 @@ body {
   }
 }
 
-@keyframes blink {
+@include keyframes(blink) {
   0% {
     color: transparent;
   }

@@ -6,7 +6,13 @@
   font-family: $font-title;
   height: 100vh;
 
+  @include phone {
+    justify-content: flex-start;
+    padding-top: 30%;
+  }
+
   &__label {
+    text-align: center;
     color: #FFF;
     font-size: 3rem;
     text-shadow:
@@ -27,6 +33,11 @@
             0 14px 0 #141414,
             0 15px 0 #121212,
             0 22px 30px rgba(0,0,0,0.9);
+
+    @include phone {
+      font-size: 2rem;
+      margin: 1rem;
+    }
   }
 
   &__input {
@@ -34,6 +45,10 @@
     padding: 0.5rem;
     width: 30rem;
     margin: 4rem;
+
+    @include phone {
+      width: 90%;
+    }
   }
 
   &__button {

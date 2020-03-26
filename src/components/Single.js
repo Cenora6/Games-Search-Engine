@@ -3,16 +3,16 @@ import {AnimateOnChange} from "@nearform/react-animation";
 import exit from "./../assets/xmark.svg";
 
 function Single({showDetails, details, handleCloseDetails}) {
-    console.log(details)
-    console.log(details.websitesUrl)
-    console.log(details.websitesCategory)
+    // console.log(details)
+    // console.log(details.websitesUrl)
+    // console.log(details.websitesCategory)
 
-    if(details.websitesUrl) {
-        console.log(details.websitesUrl)
-        console.log(details.websitesCategory)
-        console.log(details.websitesCategory.indexOf('wikia'))
-        // console.log(details.websitesCategory.findIndex('wikia'))
-    }
+    // if(details.websitesUrl) {
+    //     console.log(details.websitesUrl)
+    //     console.log(details.websitesCategory)
+    //     console.log(details.websitesCategory.indexOf('wikia'))
+    //     // console.log(details.websitesCategory.findIndex('wikia'))
+    // }
 
     return (
         <AnimateOnChange

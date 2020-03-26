@@ -27,11 +27,30 @@ const Buttons = ({activeSite, data, changeWebsite}) => {
     }
 };
 
-const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetails})  => {
+const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetails, width, height})  => {
 
-    const indexLast = activeSite * 4;
-    const indexFirst = indexLast - 4;
+    let gamesPerPage;
+
+    if(height < 600) {
+        gamesPerPage = 2;
+    } else if (height < 750) {
+        gamesPerPage = 3;
+    } else {
+        gamesPerPage = 4;
+    }
+
+    const indexLast = activeSite * gamesPerPage;
+    const indexFirst = indexLast - gamesPerPage;
     const filterGames = data.slice(indexFirst, indexLast);
+
+    const mobileStyle = {
+        margin: "0 auto",
+        marginTop: "0.5rem"
+    };
+
+    const desktopStyle = {
+        marginTop: "0.5rem"
+    };
 
     return (
         <div className='games' style={{opacity: `${loading === 0 ? '1' : "0"}`}}>
@@ -42,7 +61,7 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
                 animationOut="fadeOut"
                 className="games__animation"
             >
-                <div className='games__error nes-container is-rounded is-dark nes-pointer' style={{marginTop: "3.5rem"}}>
+                <div className='games__error nes-container is-rounded is-dark nes-pointer' style={`${width < 768}` ? mobileStyle : desktopStyle}>
                     <h2>No results.</h2>
                 </div>
             </AnimateOnChange>
@@ -56,7 +75,8 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
                         animationOut="fadeOut"
                         className="games__animation"
                     >
-                        <div id={game.id} className='games__container nes-container is-rounded is-dark nes-pointer' onClick={handleShowDetails}>
+                        <div id={game.id} className='games__container nes-container is-rounded is-dark nes-pointer' onClick={handleShowDetails}
+                             style={`${width < 768}` ? mobileStyle : desktopStyle}>
                             <h2>{game.name}</h2>
                             <div className={` ${data.length > 0 && "games__container__details"}`}>
                                 {image[index] !== undefined &&

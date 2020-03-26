@@ -7,6 +7,14 @@
   left: 10%;
   top: 10%;
 
+  @include tablet-and-phone {
+    width: 95%;
+    height: 95%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   &__title {
     display: flex;
     justify-content: space-between;
@@ -15,6 +23,12 @@
     h2 {
       color: #004f9c;
       font-size: 2rem;
+      margin: 0.5rem;
+
+      @include phone {
+        font-size: 1rem;
+        line-height: 1.3rem;
+      }
     }
   }
 
@@ -28,12 +42,27 @@
     justify-content: center;
     align-items: center;
 
+    @include tablet-and-phone {
+      display: block;
+      overflow: auto;
+    }
+
+    @include tablet {
+      display: block;
+      overflow: visible;
+    }
+
     &__image {
       display: flex;
       justify-content: center;
       align-content: center;
       margin: 1rem;
       width: 100%;
+
+      @include phone {
+        flex-direction: column;
+        margin: 0 auto;
+      }
 
       &__single {
         display: flex;
@@ -42,6 +71,11 @@
 
         img {
           border: 0.5rem double white;
+
+          @include phone {
+            width: 50%;
+            margin: 1rem;
+          }
         }
       }
 
@@ -49,6 +83,12 @@
         text-align: right;
         width: 70%;
         margin: 1rem 2rem;
+
+        @include phone {
+          margin: 0 auto;
+          width: 100%;
+          padding: 1rem;
+        }
       }
     }
 
@@ -59,6 +99,10 @@
       padding: 0.5rem;
       border-bottom: 0.2rem solid #006fa7;
       line-height: 2rem;
+
+      @include phone {
+        flex-direction: column;
+      }
     }
 
     &__text {
@@ -71,6 +115,10 @@
     font-size: 1rem;
     color: #006fa7;
     margin: 0 1rem;
+
+    @include phone {
+      font-size: 0.8rem;
+    }
   }
 
   p {
@@ -78,6 +126,10 @@
     font-size: 0.7rem;
     margin-left: 1rem;
     padding: 0.3rem 0;
+
+    @include phone {
+      font-size: 0.5rem;
+    }
   }
 
   .age_rating {
@@ -92,6 +144,10 @@
       display: flex;
       width: 100%;
       justify-content: flex-end;
+
+      @include phone {
+        justify-content: flex-start;
+      }
     }
   }
 }
