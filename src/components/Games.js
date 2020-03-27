@@ -1,9 +1,9 @@
 import React from "react";
 import {AnimateOnChange} from "@nearform/react-animation"
 
-const Buttons = ({activeSite, data, changeWebsite}) => {
+const Buttons = ({activeSite, data, changeWebsite, gamesPerPage}) => {
 
-    const allPages = Math.ceil(data.length/4);
+    const allPages = Math.ceil(data.length/gamesPerPage);
 
     if(data.length > 0) {
         if(activeSite === 1) {
@@ -91,7 +91,7 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
             })}
 
             <div className='games__button'>
-                <Buttons activeSite={activeSite} data={data} changeWebsite={changeWebsite}/>
+                <Buttons activeSite={activeSite} data={data} changeWebsite={changeWebsite} gamesPerPage={gamesPerPage}/>
             </div>
         </div>
     );

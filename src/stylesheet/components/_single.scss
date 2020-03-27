@@ -21,7 +21,7 @@
     margin: 1rem 2rem;
 
     h2 {
-      color: #004f9c;
+      color: $color-details-title;
       font-size: 2rem;
       margin: 0.5rem;
 
@@ -37,15 +37,12 @@
   }
 
   &__details {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    @include tablet-and-phone {
-      display: block;
-      overflow: auto;
-    }
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     &__image {
       display: flex;
@@ -99,7 +96,7 @@
       display: flex;
       justify-content: space-between;
       padding: 0.5rem;
-      border-bottom: 0.2rem solid #006fa7;
+      border-bottom: 0.2rem solid $color-details-text;
       line-height: 2rem;
 
       @include tablet-and-phone {
@@ -111,11 +108,28 @@
       border: none;
       width: 100%;
     }
+
+    &::-webkit-scrollbar-track
+    {
+      -webkit-box-shadow: inset 0 0 6px $color-input;
+      background-color: $color-text;
+    }
+
+    &::-webkit-scrollbar
+    {
+      width: 6px;
+      background-color: $color-text;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+      background-color: $color-background;
+    }
   }
 
   .title {
     font-size: 1rem;
-    color: #006fa7;
+    color: $color-details-text;
     margin: 0 1rem;
 
     @include phone {

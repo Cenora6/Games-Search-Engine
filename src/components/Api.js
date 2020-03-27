@@ -41,10 +41,10 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
                        fields image_id;`
                 })
                     .then(res => {
-                        console.log(res.data)
-                        setLoading(3);
                         imageArray = [...imageArray, res.data[0]];
+                        (imageArray.length === response.data.length) && setLoading(3);
                         setImage(imageArray);
+
                         setTimeout( () => {
                             setLoading(0);
                         }, 2000);
@@ -53,6 +53,7 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
                         console.error(err);
                     });
             });
+
         })
         .catch(error => {
             console.log(error.response);
@@ -81,7 +82,6 @@ function getDetails(game, setDetails) {
 
             setDetails((prevState) => ({
                 ...prevState,
-
                 id: data.id,
                 name: data.name,
                 summary: data.summary,
@@ -109,41 +109,16 @@ function getDetails(game, setDetails) {
             getReleaseDate(data.release_dates, setDetails);
 
             data.themes &&
-            getTheme(data.themes, setDetails)
+            getTheme(data.themes, setDetails);
 
             data.websites &&
-            getWebsite(data.websites, setDetails)
-
-            // setDetails({
-            //     id: data.id,
-            //     name: data.name,
-            //     summary: data.summary,
-            // })
-
-            // setDetails({
-            //
-            //     // ageRating: null,
-            //     // alternativeNames: null,
-            //     // category: null,
-            //     // collection: null,
-            //     // cover: null,
-            //     // releaseDate: null,
-            //     // gameEngine: null,
-            //     // gameMode: null,
-            //     // genres: null,
-            //     // companies: null,
-            //     // platforms: null,
-            //     // themes: null,
-            //     // timeToBeat: null,
-            //     // websites: null,
-            // })
+            getWebsite(data.websites, setDetails);
 
         })
         .catch(error => {
             console.log(error.response);
         });
 }
-
 
 function getAgeRating(rating, setDetails) {
 

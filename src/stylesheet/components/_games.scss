@@ -31,19 +31,19 @@
   }
 
   &__animation:nth-child(1) &__container:hover {
-    background-color: #004060;
+    background-color: $color-hover1;
   }
 
   &__animation:nth-child(2) &__container:hover {
-    background-color: #002040;
+    background-color: $color-hover2;
   }
 
   &__animation:nth-child(3) &__container:hover {
-    background-color: #000040;
+    background-color: $color-hover3;
   }
 
   &__animation:nth-child(4) &__container:hover {
-    background-color: #000020;
+    background-color: $color-hover4;
   }
 
   &__error {
@@ -61,8 +61,8 @@
       margin: 1rem;
       transition: 1s;
       z-index: 10;
-      background-color: #FFFFFF;
-      color: black;
+      background-color: $color-text;
+      color: $color-background;
       width: 35rem;
 
     @include phone {
@@ -74,30 +74,18 @@
       font-size: 0.7rem;
       line-height: 1.5rem;
       width: 70%;
-      text-shadow: 2px 2px 2px black;
+      text-shadow: 2px 2px 2px $color-background;
 
       @include phone {
         line-height: 1rem;
         font-size: 0.5rem;
       }
-
     }
 
     &__details {
       display: flex;
       justify-content: center;
       align-content: center;
-
-      &__description {
-        width: 60%;
-        background-color: #212529;
-        color: #FFFFFF;outline-color: #e7e7e7;
-
-        p {
-          font-size: 0.6rem;
-          line-height: 1.5rem;
-        }
-      }
 
       &__photos {
         width: 40%;
@@ -128,7 +116,7 @@
       }
 
       @include tablet {
-        left: 10%;
+        left: 5%;
       }
     }
 
@@ -140,7 +128,7 @@
       }
 
       @include tablet {
-        right: 10%;
+        right: 5%;
       }
 
     }

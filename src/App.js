@@ -47,7 +47,8 @@ function App() {
 
     const handleClick = e => {
         if (node.current.contains(e.target)) {
-            // if(!e.target.classList.contains('games__container')) {
+            // if(!e.target.classList.contains('games__contai
+            //         }, 3000)ner')) {
             //     setData([]);
             // }
         }
@@ -78,7 +79,7 @@ function App() {
         return () => window.removeEventListener("resize", handleWindowResize);
     }, []);
 
-    console.log("loading", loading);
+    console.log(loading)
     return (
         <>
             <section className={`background ${(loading) && "blur"}`} ref={node}>
