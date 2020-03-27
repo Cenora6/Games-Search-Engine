@@ -1,6 +1,6 @@
 ![](src/assets/preview/preview.png)
 
-# Games Search Engine
+# Your Games Database
 
 ### Description
 A website, where you can find games and check the details about them. 
