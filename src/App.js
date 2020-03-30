@@ -66,8 +66,8 @@ function App() {
     };
 
     const handleCloseDetails = () => {
-      setDetails({});
-      setShowDetails(false);
+        setDetails({});
+        setShowDetails(false);
     };
 
     useEffect(() => {

@@ -11,6 +11,7 @@
   transition: 2s;
   top: 50%;
   height: 43%;
+  overflow: hidden;
 
   @include phone {
     margin: 0;
@@ -28,7 +29,8 @@
   }
 
   &__animation {
-    width: 100%;
+    top: 0;
+    position: relative;
   }
 
   &__animation:nth-child(1) &__container:hover {
@@ -55,16 +57,17 @@
   }
 
   &__error, &__container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      margin: 1rem;
-      transition: 1s;
-      z-index: 10;
-      background-color: $color-text;
-      color: $color-background;
-      width: 35rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1rem;
+    transition: 1s;
+    background-color: $color-text;
+    color: $color-background;
+    width: 35rem;
+    position: absolute;
+    z-index: 0;
 
     @include phone {
       width: 90%;

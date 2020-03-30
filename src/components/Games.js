@@ -1,12 +1,16 @@
 import React from "react";
 import {AnimateOnChange} from "@nearform/react-animation"
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Transition from 'react-transition-group/Transition';
+
+import {
+    CSSTransition,
+    TransitionGroup
+} from 'react-transition-group';
 
 const Buttons = ({activeSite, data, changeWebsite, gamesPerPage}) => {
 
     const allPages = Math.ceil(data.length/gamesPerPage);
-    console.log("length", data.length)
-    console.log("gamesperpage", gamesPerPage)
-    console.log("activeSite", activeSite)
 
     if(data.length < 0 || data.length <= gamesPerPage) {
         return null;
@@ -28,9 +32,28 @@ const Buttons = ({activeSite, data, changeWebsite, gamesPerPage}) => {
     }
 };
 
+// const duration = 700;
+//
+// const defaultStyle = {
+//     transition: `opacity ${duration}ms ease-in-out`,
+//     opacity: 0,
+// };
+//
+// const transitionStyles = {
+//     entering: { opacity: 0 },
+//     entered: { opacity: 1 },
+//     exiting: { opacity: 1 },
+//     exited: { opacity: 0 },
+// };
+
+const Fade = ({ children, ...props }) => (
+    <CSSTransition {...props} timeout={700} classNames="fade">
+        {children}
+    </CSSTransition>
+);
+
 const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetails, width, height})  => {
 
-    console.log(data.length)
     let gamesPerPage;
 
     if(height < 600) {
@@ -44,7 +67,6 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
     const indexLast = activeSite * gamesPerPage;
     const indexFirst = indexLast - gamesPerPage;
     const filterGames = data.slice(indexFirst, indexLast);
-
     const mobileStyle = {
         margin: "0 auto",
         marginTop: "0.5rem"
@@ -59,8 +81,6 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
             {(data.length === 0 && loading === 0) &&
             <AnimateOnChange
                 durationOut="700"
-                animationIn="fadeIn"
-                animationOut="fadeOut"
                 className="games__animation"
             >
                 <div className='games__error nes-container is-rounded is-dark nes-pointer' style={`${width < 768}` ? mobileStyle : desktopStyle}>
@@ -71,24 +91,26 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
             {filterGames.map( (game, index) => {
                 const imageNumber = index + 4 * (activeSite - 1);
                 return (
-                    <AnimateOnChange
-                        durationOut="500"
-                        animationIn="fadeIn"
-                        animationOut="fadeOut"
-                        className="games__animation"
-                    >
-                        <div id={game.id} className='games__container nes-container is-rounded is-dark nes-pointer' onClick={handleShowDetails}
-                             style={`${width < 768}` ? mobileStyle : desktopStyle}>
-                            <h2>{game.name}</h2>
-                            <div className={` ${data.length > 0 && "games__container__details"}`}>
-                                {image[index] !== undefined &&
-                                <div className='games__container__details__photos'>
-                                    <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${image[imageNumber].image_id}.jpg`} alt={index}/>
+                    <TransitionGroup className='games__animation'>
+                        <CSSTransition
+                            key={game.id}
+                            timeout={700}
+                            classNames="fade"
+                            unmountOnExit
+                        >
+                            <div id={game.id} className='games__container nes-container is-rounded is-dark nes-pointer' onClick={handleShowDetails}
+                                 style={`${width < 768}` ? mobileStyle : desktopStyle}>
+                                <h2>{game.name}</h2>
+                                <div className={` ${data.length > 0 && "games__container__details"}`}>
+                                    {image[index] !== undefined &&
+                                    <div className='games__container__details__photos'>
+                                        <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${image[imageNumber].image_id}.jpg`} alt={index}/>
+                                    </div>
+                                    }
                                 </div>
-                                }
                             </div>
-                        </div>
-                    </AnimateOnChange>
+                        </CSSTransition>
+                    </TransitionGroup>
                 )
             })}
 
