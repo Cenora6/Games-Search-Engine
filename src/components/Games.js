@@ -4,31 +4,33 @@ import {AnimateOnChange} from "@nearform/react-animation"
 const Buttons = ({activeSite, data, changeWebsite, gamesPerPage}) => {
 
     const allPages = Math.ceil(data.length/gamesPerPage);
+    console.log("length", data.length)
+    console.log("gamesperpage", gamesPerPage)
+    console.log("activeSite", activeSite)
 
-    if(data.length > 0) {
-        if(activeSite === 1) {
-            return (
-                <button type="button" className="nes-btn is-warning right" onClick={changeWebsite}>&gt;</button>
-            )
-        } else if (activeSite === allPages) {
-            return (
-                <button type="button" className="nes-btn is-warning left" onClick={changeWebsite}>&lt;</button>
-            )
-        } else {
-            return (
-                <>
-                    <button type="button" className="nes-btn is-warning left" onClick={changeWebsite}>&lt;</button>
-                    <button type="button" className="nes-btn is-warning right" onClick={changeWebsite}>&gt;</button>)
-                </>
-            )
-        }
-    } else {
+    if(data.length < 0 || data.length <= gamesPerPage) {
         return null;
+    } else if (activeSite === 1) {
+        return (
+            <button type="button" className="nes-btn is-warning right" onClick={changeWebsite}>&gt;</button>
+        )
+    } else if (activeSite === allPages) {
+        return (
+            <button type="button" className="nes-btn is-warning left" onClick={changeWebsite}>&lt;</button>
+        )
+    } else {
+        return (
+            <>
+                <button type="button" className="nes-btn is-warning left" onClick={changeWebsite}>&lt;</button>
+                <button type="button" className="nes-btn is-warning right" onClick={changeWebsite}>&gt;</button>)
+            </>
+        )
     }
 };
 
 const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetails, width, height})  => {
 
+    console.log(data.length)
     let gamesPerPage;
 
     if(height < 600) {
@@ -56,7 +58,7 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
         <div className='games' style={{opacity: `${loading === 0 ? '1' : "0"}`}}>
             {(data.length === 0 && loading === 0) &&
             <AnimateOnChange
-                durationOut="500"
+                durationOut="700"
                 animationIn="fadeIn"
                 animationOut="fadeOut"
                 className="games__animation"
