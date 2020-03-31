@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import Games from "./components/Games";
 import Search from "./components/Search";
 import {getDetails, getGames} from "./components/Api";
@@ -7,7 +7,6 @@ import Single from "./components/Single";
 
 function App() {
 
-    const node = useRef();
     const [game, setGame] = useState("");
     const [focus, setFocus] = useState(false);
     const [data, setData] = useState([]);
@@ -36,22 +35,6 @@ function App() {
         setShowDetails(false);
         setData([]);
         setDetails({});
-    };
-
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClick);
-        return () => {
-            document.removeEventListener("mousedown", handleClick);
-        };
-    }, []);
-
-    const handleClick = e => {
-        if (node.current.contains(e.target)) {
-            // if(!e.target.classList.contains('games__contai
-            //         }, 3000)ner')) {
-            //     setData([]);
-            // }
-        }
     };
 
     const changeWebsite = (e) => {
@@ -87,7 +70,7 @@ function App() {
 
     return (
         <>
-            <section className={`background ${(loading) && "blur"}`} ref={node}>
+            <section className={`background ${(loading) && "blur"}`}>
                 <div className={`background__loading`} style={{display: `${!loading ? 'none' : "flex"}`}}>
                     <div className='background__loading__text'>
                         <p>Loading</p>
@@ -99,7 +82,7 @@ function App() {
                 </div>
                 <audio src={retroWave} autoPlay={true} loop={true}/>
                 <Search handleSubmit={handleSubmit} focus={focus} game={game}
-                        handleInputChange={handleInputChange} handleFocus={handleFocus}/>
+                        handleInputChange={handleInputChange} handleFocus={handleFocus} loading={loading}/>
                 <Games data={data} image={image} loading={loading} activeSite={activeSite} setActiveSite={setActiveSite}
                        changeWebsite={changeWebsite} handleShowDetails={handleShowDetails} width={width} height={height}/>
                 <Single showDetails={showDetails} details={details} handleCloseDetails={handleCloseDetails}/>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = ({handleSubmit, focus, game, handleInputChange, handleFocus})  => {
+const Search = ({handleSubmit, focus, game, handleInputChange, handleFocus, loading})  => {
 
     return (
         <form className='search' onSubmit={handleSubmit} autoComplete="off">
@@ -11,7 +11,8 @@ const Search = ({handleSubmit, focus, game, handleInputChange, handleFocus})  =>
                        value={game} onChange={handleInputChange}
                        onClick={handleFocus}/>
             </div>
-            <button type="submit" className="nes-btn is-warning search__button" onSubmit={handleSubmit}>Search</button>
+            <button type="submit" className="nes-btn is-warning search__button" onSubmit={handleSubmit}
+                    style={{zIndex: `${loading !== null ? '0' : "1"}`}}>Search</button>
         </form>
     )
 };

@@ -11,7 +11,8 @@
   transition: 2s;
   top: 50%;
   overflow: hidden;
-  min-height: 46%;
+  min-height: 45%;
+  z-index: 0;
 
   @include phone {
     margin: 0;
@@ -65,7 +66,7 @@
     color: $color-background;
     width: 35rem;
     position: absolute;
-    z-index: 0;
+    z-index: 1;
 
     @include phone {
       width: 90%;
