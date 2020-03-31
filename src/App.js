@@ -59,15 +59,21 @@ function App() {
     };
 
     const handleShowDetails = (e) => {
-        getDetails(e.currentTarget.id, setDetails);
+        getDetails(e.currentTarget.id, setDetails, setShowDetails);
+        setLoading(1)
+        setTimeout( () => {
+            setLoading(2)
+        }, 2000);
         setTimeout( () => {
             setShowDetails(true);
+            setLoading(null)
         }, 3000)
     };
 
     const handleCloseDetails = () => {
         setDetails({});
         setShowDetails(false);
+        setLoading(0)
     };
 
     useEffect(() => {
@@ -79,7 +85,6 @@ function App() {
         return () => window.removeEventListener("resize", handleWindowResize);
     }, []);
 
-    console.log(loading)
     return (
         <>
             <section className={`background ${(loading) && "blur"}`} ref={node}>

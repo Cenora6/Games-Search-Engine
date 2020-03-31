@@ -1,5 +1,9 @@
 import React from 'react';
-import {AnimateOnChange} from "@nearform/react-animation";
+import {
+    CSSTransition,
+    TransitionGroup
+} from 'react-transition-group';
+
 import exit from "./../assets/xmark.svg";
 
 function Single({showDetails, details, handleCloseDetails}) {
@@ -13,13 +17,16 @@ function Single({showDetails, details, handleCloseDetails}) {
     //     console.log(details.websitesCategory.indexOf('wikia'))
     //     // console.log(details.websitesCategory.findIndex('wikia'))
     // }
+    // console.log(showDetails)
 
     return (
-        <AnimateOnChange
-            durationOut="500"
-            animationIn="fadeIn"
-            animationOut="fadeOut"
-        >
+        <TransitionGroup className='animation'>
+            <CSSTransition
+                in={showDetails}
+                timeout={700}
+                classNames="fade"
+                key={showDetails}
+            >
 
             <section className='single nes-container is-rounded is-dark' style={{display: `${showDetails ? 'flex' : 'none'}`}}>
                 <div className='single__title'>
@@ -120,7 +127,8 @@ function Single({showDetails, details, handleCloseDetails}) {
 
             </section>
 
-        </AnimateOnChange>
+            </CSSTransition>
+        </TransitionGroup>
 
     );
 }

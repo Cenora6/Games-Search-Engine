@@ -12,7 +12,7 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
         },
         data: `search "${game}";
                fields id,name,cover;
-               limit 50;
+               limit 100;
                where cover != n;`
     })
         .then(response => {
@@ -60,7 +60,7 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
         });
 }
 
-function getDetails(game, setDetails) {
+function getDetails(game, setDetails, setShowDetails) {
     axios({
         url: `${proxy}https://api-v3.igdb.com/games/`,
         method: 'POST',

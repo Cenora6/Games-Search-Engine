@@ -1,8 +1,4 @@
 import React from "react";
-import {AnimateOnChange} from "@nearform/react-animation"
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Transition from 'react-transition-group/Transition';
-
 import {
     CSSTransition,
     TransitionGroup
@@ -32,26 +28,6 @@ const Buttons = ({activeSite, data, changeWebsite, gamesPerPage}) => {
     }
 };
 
-// const duration = 700;
-//
-// const defaultStyle = {
-//     transition: `opacity ${duration}ms ease-in-out`,
-//     opacity: 0,
-// };
-//
-// const transitionStyles = {
-//     entering: { opacity: 0 },
-//     entered: { opacity: 1 },
-//     exiting: { opacity: 1 },
-//     exited: { opacity: 0 },
-// };
-
-const Fade = ({ children, ...props }) => (
-    <CSSTransition {...props} timeout={700} classNames="fade">
-        {children}
-    </CSSTransition>
-);
-
 const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetails, width, height})  => {
 
     let gamesPerPage;
@@ -79,14 +55,17 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
     return (
         <div className='games' style={{opacity: `${loading === 0 ? '1' : "0"}`}}>
             {(data.length === 0 && loading === 0) &&
-            <AnimateOnChange
-                durationOut="700"
-                className="games__animation"
-            >
-                <div className='games__error nes-container is-rounded is-dark nes-pointer' style={`${width < 768}` ? mobileStyle : desktopStyle}>
-                    <h2>No results.</h2>
-                </div>
-            </AnimateOnChange>
+            <TransitionGroup className='games__animation'>
+                <CSSTransition
+                    timeout={700}
+                    classNames="fade"
+                    unmountOnExit
+                >
+                    <div className='games__error nes-container is-rounded is-dark nes-pointer' style={`${width < 768}` ? mobileStyle : desktopStyle}>
+                        <h2>No results.</h2>
+                    </div>
+                </CSSTransition>
+            </TransitionGroup>
             }
             {filterGames.map( (game, index) => {
                 const imageNumber = index + 4 * (activeSite - 1);

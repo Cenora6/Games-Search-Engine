@@ -1,21 +1,45 @@
 .nes-container.is-rounded.is-dark.fade {
   &-enter,
   &-appear {
-    top: 0;
     opacity: 0;
   }
   &-enter-active,
   &-appear-active {
     opacity: 1;
-    transition: opacity 700ms ease-in-out;
+    transition: opacity 1000ms ease-in-out;
   }
   &-exit {
     position: absolute;
     opacity: 1;
-    top: 0;
   }
   &-exit-active {
     opacity: 0;
-    transition: opacity 700ms ease-in-out;
+    transition: opacity 1000ms ease-in-out;
+  }
+}
+
+.games {
+  &__container {
+    &.nes-container.is-rounded.is-dark.fade {
+      &-enter,
+      &-appear {
+        top: 0;
+      }
+      &-exit {
+        top: 0;
+      }
+    }
+  }
+}
+
+.single {
+  &.nes-container.is-rounded.is-dark.fade {
+    &-enter,
+    &-appear {
+      top: 10%;
+    }
+    &-exit {
+      top: 10%;
+    }
   }
 }

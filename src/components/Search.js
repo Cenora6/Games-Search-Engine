@@ -14,7 +14,6 @@ const Search = ({handleSubmit, focus, game, handleInputChange, handleFocus})  =>
             <button type="submit" className="nes-btn is-warning search__button" onSubmit={handleSubmit}>Search</button>
         </form>
     )
-
 };
 
 export default  Search;
