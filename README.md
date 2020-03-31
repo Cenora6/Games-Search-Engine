@@ -16,6 +16,7 @@ A website, where you can find games and check the details about them.
 - [nes.css](https://www.npmjs.com/package/nes.css/)
 - [cors-anywhere](https://www.npmjs.com/package/cors-anywhere/)
 - [axios](https://www.npmjs.com/package/axios/)
+- [React Transition Group](https://www.npmjs.com/package/react-transition-group/)
 
 ### Installation:
 
