@@ -4,7 +4,7 @@
 
 ### Description:
 
-A video game database, where you can find informations about all the games. This website is using [IGDB database](https://www.igdb.com/).
+A video game database, where you can find informations about all the games. This website is using [IGDB database](https://www.igdb.com/). You can also listen to a retro music while searching for the games.
  
 ### Technologies:
 - HTML5
