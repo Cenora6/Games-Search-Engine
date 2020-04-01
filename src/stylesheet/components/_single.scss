@@ -58,6 +58,7 @@
 
       &__single {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
 
@@ -67,6 +68,26 @@
           @include tablet-and-phone {
             width: 50%;
             margin: 1rem;
+          }
+        }
+
+        &__websites {
+          margin: 1rem 0;
+          text-align: center;
+          width: 70%;
+
+          a {
+            margin: 1rem 0.5rem;
+            color: $color-details-title;
+
+            &:hover {
+              opacity: 0.5;
+            }
+
+            i {
+              padding: 0.3rem 0;
+              font-size: 1.5rem;
+            }
           }
         }
       }

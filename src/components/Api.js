@@ -407,7 +407,6 @@ function getTheme(themes, setDetails) {
 }
 
 function getWebsite(website, setDetails) {
-    const websiteCategory = [];
     const websiteUrl = [];
 
     website.forEach( (website) => {
@@ -419,46 +418,10 @@ function getWebsite(website, setDetails) {
                 'user-key': API_KEY
             },
             data: `where id=${website};
-                       fields category, url;`
+                       fields url;`
         })
             .then(res => {
-
                 websiteUrl.push(res.data[0].url);
-
-                if(res.data[0].category === 1) {
-                    websiteCategory.push("official")
-                } else if (res.data[0].category === 2) {
-                    websiteCategory.push("wikia")
-                } else if (res.data[0].category === 3) {
-                    websiteCategory.push("wikipedia")
-                } else if (res.data[0].category === 4) {
-                    websiteCategory.push("facebook")
-                } else if (res.data[0].category === 5) {
-                    websiteCategory.push("twitter")
-                } else if (res.data[0].category === 6) {
-                    websiteCategory.push("twitch")
-                } else if (res.data[0].category === 8) {
-                    websiteCategory.push("instagram")
-                } else if (res.data[0].category === 9) {
-                    websiteCategory.push("youtube")
-                } else if (res.data[0].category === 10) {
-                    websiteCategory.push("iphone")
-                } else if (res.data[0].category === 11) {
-                    websiteCategory.push("ipad")
-                } else if (res.data[0].category === 12) {
-                    websiteCategory.push("android")
-                } else if (res.data[0].category === 13) {
-                    websiteCategory.push("steam")
-                } else if (res.data[0].category === 14) {
-                    websiteCategory.push("reddit")
-                } else if (res.data[0].category === 15) {
-                    websiteCategory.push("itch")
-                } else if (res.data[0].category === 16) {
-                    websiteCategory.push("epicgames")
-                } else if (res.data[0].category === 17) {
-                    websiteCategory.push("gog")
-                }
-
             })
             .catch(error => {
                 console.log(error.response);
@@ -467,7 +430,6 @@ function getWebsite(website, setDetails) {
 
     setDetails((prevState) => ({
         ...prevState,
-        websitesCategory: websiteCategory,
         websitesUrl: websiteUrl,
     }));
 

@@ -70,7 +70,7 @@ const Games = ({data, image, loading, activeSite, changeWebsite, handleShowDetai
             {filterGames.map( (game, index) => {
                 const imageNumber = index + 4 * (activeSite - 1);
                 return (
-                    <TransitionGroup className='games__animation'>
+                    <TransitionGroup className='games__animation' key={index}>
                         <CSSTransition
                             key={game.id}
                             timeout={700}
