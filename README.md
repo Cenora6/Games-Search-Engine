@@ -2,8 +2,9 @@
 
 # Your Games Database
 
-### Description
-A website, where you can find games and check the details about them. 
+### Description:
+
+A video game database, where you can find informations about all the games. This website is using [IGDB database](https://www.igdb.com/).
  
 ### Technologies:
 - HTML5
@@ -23,3 +24,7 @@ A website, where you can find games and check the details about them.
 -  ```git clone https://github.com/Cenora6/games-search-engine.git``` to clone the repository
 - ```npm install``` to install all dependencies
 - ```npm start``` and ```http://localhost:3000/``` in the browser to preview the website
+
+### Preview:
+
+If you want to preview the website ⇒ [HERE](https://cenora6.github.io/Your-Games-Database/).
