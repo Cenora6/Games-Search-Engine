@@ -105,6 +105,7 @@
   }
 
   &__button {
+    z-index: 20;
 
     .left, .right {
       position: absolute;

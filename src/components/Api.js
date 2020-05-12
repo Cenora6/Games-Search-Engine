@@ -60,7 +60,7 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
         });
 }
 
-function getDetails(game, setDetails, setShowDetails) {
+function getDetails(game, setDetails) {
     axios({
         url: `${proxy}https://api-v3.igdb.com/games/`,
         method: 'POST',
