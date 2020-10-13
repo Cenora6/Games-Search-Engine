@@ -5,7 +5,7 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
         url: '/games/',
         data: `search "${game}";
                fields id,name,cover;
-               limit 20;
+               limit 10;
                where cover != n;`
     })
         .then(response => {
