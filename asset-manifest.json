@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/Your-Games-Database/static/css/main.1485f7ab.chunk.css",
-    "main.js": "/Your-Games-Database/static/js/main.6ea25b74.chunk.js",
-    "main.js.map": "/Your-Games-Database/static/js/main.6ea25b74.chunk.js.map",
-    "runtime-main.js": "/Your-Games-Database/static/js/runtime-main.3e6e0f45.js",
-    "runtime-main.js.map": "/Your-Games-Database/static/js/runtime-main.3e6e0f45.js.map",
-    "static/css/2.d0121f86.chunk.css": "/Your-Games-Database/static/css/2.d0121f86.chunk.css",
-    "static/js/2.d34fac2b.chunk.js": "/Your-Games-Database/static/js/2.d34fac2b.chunk.js",
-    "static/js/2.d34fac2b.chunk.js.map": "/Your-Games-Database/static/js/2.d34fac2b.chunk.js.map",
+    "main.css": "/Your-Games-Database/static/css/main.4a50729a.chunk.css",
+    "main.js": "/Your-Games-Database/static/js/main.25675dc6.chunk.js",
+    "main.js.map": "/Your-Games-Database/static/js/main.25675dc6.chunk.js.map",
+    "runtime-main.js": "/Your-Games-Database/static/js/runtime-main.7d1b1ff4.js",
+    "runtime-main.js.map": "/Your-Games-Database/static/js/runtime-main.7d1b1ff4.js.map",
+    "static/css/2.a4ee0250.chunk.css": "/Your-Games-Database/static/css/2.a4ee0250.chunk.css",
+    "static/js/2.857b26b0.chunk.js": "/Your-Games-Database/static/js/2.857b26b0.chunk.js",
+    "static/js/2.857b26b0.chunk.js.map": "/Your-Games-Database/static/js/2.857b26b0.chunk.js.map",
     "index.html": "/Your-Games-Database/index.html",
-    "precache-manifest.1769d76280692a77b85e17208967985a.js": "/Your-Games-Database/precache-manifest.1769d76280692a77b85e17208967985a.js",
+    "precache-manifest.7dcf04b65512d5b06c91a0d2df928dce.js": "/Your-Games-Database/precache-manifest.7dcf04b65512d5b06c91a0d2df928dce.js",
     "service-worker.js": "/Your-Games-Database/service-worker.js",
-    "static/css/2.d0121f86.chunk.css.map": "/Your-Games-Database/static/css/2.d0121f86.chunk.css.map",
-    "static/css/main.1485f7ab.chunk.css.map": "/Your-Games-Database/static/css/main.1485f7ab.chunk.css.map",
-    "static/js/2.d34fac2b.chunk.js.LICENSE.txt": "/Your-Games-Database/static/js/2.d34fac2b.chunk.js.LICENSE.txt",
+    "static/css/2.a4ee0250.chunk.css.map": "/Your-Games-Database/static/css/2.a4ee0250.chunk.css.map",
+    "static/css/main.4a50729a.chunk.css.map": "/Your-Games-Database/static/css/main.4a50729a.chunk.css.map",
+    "static/js/2.857b26b0.chunk.js.LICENSE.txt": "/Your-Games-Database/static/js/2.857b26b0.chunk.js.LICENSE.txt",
     "static/media/main.scss": "/Your-Games-Database/static/media/background.af3c090f.png",
     "static/media/retrowave.mp3": "/Your-Games-Database/static/media/retrowave.dde008c3.mp3",
     "static/media/xmark.svg": "/Your-Games-Database/static/media/xmark.a338bc02.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.3e6e0f45.js",
-    "static/css/2.d0121f86.chunk.css",
-    "static/js/2.d34fac2b.chunk.js",
-    "static/css/main.1485f7ab.chunk.css",
-    "static/js/main.6ea25b74.chunk.js"
+    "static/js/runtime-main.7d1b1ff4.js",
+    "static/css/2.a4ee0250.chunk.css",
+    "static/js/2.857b26b0.chunk.js",
+    "static/css/main.4a50729a.chunk.css",
+    "static/js/main.25675dc6.chunk.js"
   ]
 }
