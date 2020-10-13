@@ -22,8 +22,6 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
             setGame("");
             setData(response.data);
 
-            console.log("getGames", response.data)
-
             let imageArray = [];
             response.data.forEach ( (game) => {
 
@@ -33,9 +31,6 @@ function getGames(game, data, setData, image, setImage, setGame, setLoading) {
                        fields image_id;`
                 })
                     .then(res => {
-
-                        console.log("getImages", res.data)
-
                         imageArray = [...imageArray, res.data[0]];
                         (imageArray.length === response.data.length) && setLoading(3);
                         setImage(imageArray);
@@ -66,7 +61,6 @@ function getDetails(game, setDetails) {
                slug, tags, total_rating, total_rating_count, updated_at, url;`
     })
         .then(response => {
-            console.log("getDetails", response.data)
             const data = response.data[0];
 
             setDetails((prevState) => ({
@@ -122,7 +116,6 @@ function getAgeRating(rating, setDetails) {
                fields category, rating;`
         })
             .then(res => {
-                console.log("getAgeRating", res.data)
 
                 const category = ["ESRB", "PEGI"];
                 const categoryIndex = res.data[0].category;
@@ -160,7 +153,6 @@ function getAlternativeNames(name, setDetails) {
                        fields name;`
         })
             .then(res => {
-                console.log("getAlternativeNames", res.data)
                 alternativeNames.push(res.data[0].name)
             })
             .catch(error => {
@@ -186,15 +178,12 @@ function getCompany(company, setDetails) {
                        fields *;`
         })
             .then(res => {
-
-                console.log("getCompany", res.data)
                 axios({
                     url: '/companies/',
                     data: `where id=${res.data[0].company};
                        fields *;`
                 })
                     .then(res => {
-                        console.log("getCompany - details", res.data)
                         companyArray.push(res.data[0].name)
 
                     })
@@ -222,8 +211,6 @@ function getCover(cover, setDetails) {
                        fields image_id;`
     })
         .then(res => {
-            console.log("getCover", res.data)
-
             setDetails((prevState) => ({
                 ...prevState,
                 cover: res.data[0].image_id,
@@ -248,7 +235,6 @@ function getGameMode(mode, setDetails) {
                        fields *;`
         })
             .then(res => {
-                console.log("getGameMode", res.data)
                 modeArray.push(res.data[0].name)
 
             })
@@ -273,7 +259,6 @@ function getGenres(genre, setDetails) {
                        fields *;`
         })
             .then(res => {
-                console.log("getGenres", res.data)
                 genreArray.push(res.data[0].name)
 
             })
@@ -299,7 +284,6 @@ function getReleaseDate(date, setDetails) {
                        fields *;`
         })
             .then(res => {
-                console.log("getReleaseDate", res.data)
                 releaseDateArray.push(res.data[0].y);
 
             })
@@ -325,7 +309,6 @@ function getTheme(themes, setDetails) {
                        fields name;`
         })
             .then(res => {
-                console.log("getTheme", res.data)
                 themesArray.push(res.data[0].name);
 
             })
@@ -351,7 +334,6 @@ function getWebsite(website, setDetails) {
                        fields url;`
         })
             .then(res => {
-                console.log("getWebsite", res.data)
                 websiteUrl.push(res.data[0].url);
             })
             .catch(error => {
