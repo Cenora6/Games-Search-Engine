@@ -30,6 +30,14 @@
   &__animation {
     top: 0;
     position: relative;
+
+    @media (max-width: 500px) {
+      width: 100%;
+    }
+
+    @media (min-width: 501px) and (max-width: 767px) {
+      width: 70%;
+    }
   }
 
   &__animation:nth-child(1) &__container:hover {

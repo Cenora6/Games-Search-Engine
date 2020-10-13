@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import Games from "./components/Games";
-import Search from "./components/Search";
-import {getDetails, getGames} from "./components/Api";
+import Games from "./components/Games/Games";
+import Search from "./components/Search/Search";
+import {getDetails, getGames} from "./api/Api";
 import retroWave from "./assets/music/retrowave.mp3";
-import Single from "./components/Single";
+import Single from "./components/Single/Single";
+import getAppToken from './auth/Auth';
 
 function App() {
 
@@ -66,6 +67,11 @@ function App() {
 
         window.addEventListener("resize", handleWindowResize);
         return () => window.removeEventListener("resize", handleWindowResize);
+    }, []);
+
+
+    useEffect(() => {
+        getAppToken();
     }, []);
 
     return (
